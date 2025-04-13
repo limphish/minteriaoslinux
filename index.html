@@ -1,280 +1,240 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinteriaOS</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            background: '#000',
-            foreground: '#fff',
-            primary: '#FFA95C',
-            button: '#1E1E1E',
-            buttonHover: '#333',
-            muted: '#888',
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-        },
-      },
-    };
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MinteriaOS — Хакерская OS нового поколения</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      position: relative;
-      overflow: hidden;
+      background: black;
+      color: #00ff99;
+      overflow-x: hidden;
     }
-    span.hidden {
-      opacity: 0;
-      display: inline-block;
-      white-space: pre;
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
-    .button-container {
-      opacity: 0;
-    }
-    .icon-button svg {
-      width: 48px;
-      height: 48px;
-      display: block;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    .icon-button:hover svg {
-      transform: scale(1.1);
-      opacity: 0.9;
-    }
-    .music-controls {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .music-controls button {
-      background-color: #1E1E1E;
-      border: none;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .music-controls button:hover {
-      background-color: #333;
-      transform: scale(1.1);
-    }
-    .music-controls button svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-    }
-    .progress-container {
+
+    /* PRELOADER */
+    #preloader {
+      position: fixed;
       width: 100%;
-      margin-top: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .progress-bar {
-      flex-grow: 1;
-      height: 4px;
-      background-color: #444;
-      position: relative;
-      cursor: pointer;
-    }
-    .progress-bar .progress {
       height: 100%;
-      background-color: white;
-      width: 0%;
+      background: black;
+      color: #00ff99;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      font-family: monospace;
+      font-size: 16px;
+      text-align: center;
     }
-    .time {
-      font-size: 14px;
-      color: #888;
+
+    #loaderContent h1.logo {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #00ff99;
+      letter-spacing: 3px;
+      animation: glowLogo 1.5s ease-in-out infinite alternate;
     }
-    .snowflake {
-      position: absolute;
-      top: -10px;
-      width: 4px;
-      height: 4px;
-      background-color: white;
-      border-radius: 50%;
-      user-select: none;
-      pointer-events: none;
+
+    @keyframes glowLogo {
+      from { text-shadow: 0 0 10px #00ff99; }
+      to { text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99; }
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    body.loaded #preloader {
+      display: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    header h1 {
+      font-size: 4rem;
+      color: #00ff99;
+      text-shadow: 0 0 10px #00ff99;
+      animation: glow 2s infinite alternate;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      margin-top: 10px;
+      color: #aaffcc;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00ff99;
+      }
+      to {
+        text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99;
+      }
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid #00ff99;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ff99;
+    }
+
+    .section h2 {
+      color: #00ffcc;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .section p, .section li {
+      color: #ccffe0;
+      margin-bottom: 10px;
+    }
+
+    .btns {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btns a {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px;
+      background: #00ff99;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00ff99;
+      transition: 0.3s;
+    }
+
+    .btns a:hover {
+      background: black;
+      color: #00ff99;
+      border: 1px solid #00ff99;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      font-size: 0.9rem;
+      color: #66ffcc;
     }
   </style>
 </head>
-<body class="flex min-h-screen items-center justify-center bg-background text-foreground p-4">
-  <div id="snowflakes"></div>
-  <main class="text-center space-y-8 max-w-3xl w-full px-4">
-    <img src="12.png" alt="Изображение" class="mx-auto w-32 h-32" />
-    <h1 class="text-4xl font-bold sm:text-5xl md:text-6xl"><span class="text-primary">MinteriaOS</span></h1>
-    <p id="bio" class="text-lg sm:text-xl text-muted">MinteriaOS: Хакинг, безопасность, мощные инструменты.</p>
-    <div id="button-container" class="button-container flex flex-wrap justify-center gap-6 mt-8">
-      <a href="https://t.me/minteriaOS" target="_blank" class="icon-button">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24ZM16.0715 21.8015C13.6673 22.8512 11.1971 23.9298 8.93825 25.174C7.75877 26.0376 9.32638 26.6485 10.7971 27.2215C11.0309 27.3126 11.2622 27.4027 11.4797 27.4927C11.6607 27.5484 11.8447 27.607 12.0312 27.6664C13.6669 28.1875 15.4907 28.7686 17.0787 27.8945C19.6873 26.396 22.149 24.6636 24.6089 22.9325C25.4148 22.3653 26.2205 21.7983 27.0311 21.2397C27.0691 21.2154 27.1119 21.1876 27.1588 21.1573C27.8493 20.7096 29.4024 19.7029 28.8279 21.0901C27.4695 22.5757 26.0144 23.8907 24.5515 25.213C23.5655 26.1041 22.5759 26.9985 21.6099 27.9505C20.7686 28.6341 19.8949 30.0088 20.837 30.9661C23.0069 32.4851 25.2107 33.9673 27.4132 35.4487C28.1299 35.9307 28.8466 36.4127 29.5618 36.8959C30.774 37.8637 32.6685 37.0808 32.935 35.5685C33.0535 34.8728 33.1725 34.1772 33.2915 33.4815C33.9491 29.6368 34.6069 25.7907 35.188 21.9335C35.267 21.3284 35.3565 20.7234 35.4461 20.1181C35.6632 18.651 35.8806 17.1821 35.9485 15.7071C35.7735 14.2351 33.9887 14.5588 32.9955 14.8898C27.8903 16.8324 22.8361 18.919 17.8019 21.0424C17.2316 21.295 16.6535 21.5474 16.0715 21.8015Z" fill="white"/>
-        </svg>
-      <a href="https://github.com/limphish/MinteriaOS.git" target="_blank" class="icon-button">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 0.296997C5.372 0.296997 0 5.669 0 12.297C0 17.7 3.438 22.199 8.205 23.797C8.805 23.907 9.025 23.554 9.025 23.247C9.025 22.969 9.015 22.277 9.009 21.384C5.672 22.092 4.968 19.635 4.968 19.635C4.422 18.261 3.633 17.898 3.633 17.898C2.546 17.186 3.719 17.201 3.719 17.201C4.922 17.289 5.554 18.452 5.554 18.452C6.629 20.297 8.419 19.788 9.048 19.481C9.153 18.712 9.453 18.188 9.786 17.888C7.129 17.584 4.344 16.504 4.344 11.773C4.344 10.441 4.797 9.357 5.57 8.516C5.449 8.216 5.051 6.953 5.676 5.271C5.676 5.271 6.684 4.941 8.991 6.627C9.946 6.346 10.968 6.206 11.99 6.201C13.012 6.206 14.035 6.346 14.991 6.627C17.296 4.941 18.303 5.271 18.303 5.271C18.93 6.953 18.53 8.216 18.411 8.516C19.187 9.357 19.635 10.441 19.635 11.773C19.635 16.516 16.842 17.58 14.175 17.875C14.601 18.258 14.982 19.015 14.982 20.146C14.982 21.694 14.965 22.916 14.965 23.247C14.965 23.557 15.18 23.915 15.795 23.795C20.565 22.195 24 17.696 24 12.297C24 5.669 18.627 0.296997 12 0.296997Z"/>
-        </svg>
-      </a>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div id="loaderContent">
+      <h1 class="logo">MinteriaOS</h1>
+      <p>Booting system<span class="blink">█</span></p>
     </div>
+  </div>
 
-    <div class="music-controls">
-      <button id="prevButton" title="Назад">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 6v12h2V6H6zm10 0v12l-8-6 8-6z" />
-        </svg>
-      </button>
-      <button id="pauseButton" title="Пауза">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 6h2v12H8V6zm6 0h2v12h-2V6z" />
-        </svg>
-      </button>
-      <button id="nextButton" title="Вперед">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 6v12h2V6H6zm10 0v12l-8-6 8-6z" transform="scale(-1, 1) translate(-24, 0)" />
-        </svg>
-      </button>
-    </div>
-    <div class="progress-container">
-      <span id="currentTime" class="time">0:00</span>
-      <div class="progress-bar" id="progressBar">
-        <div class="progress" id="progress"></div>
-      </div>
-      <span id="duration" class="time">0:00</span>
-    </div>
-  </main>
+  <canvas id="matrix"></canvas>
 
-  <audio id="audioPlayer"></audio>
+  <header>
+    <h1>MinteriaOS</h1>
+    <p>Хакерская операционная система нового поколения</p>
+  </header>
+
+  <section class="section">
+    <h2>☠️ О системе</h2>
+    <p><strong>MinteriaOS</strong> — это не просто линукс. Это цифровое оружие.</p>
+    <p>Создана для реальных операций: разведка, атака, защита и уклонение. Всё на одном ISO, всё на одной миссии — дать силу хакеру.</p>
+  </section>
+
+  <section class="section">
+    <h2>🟢 Что внутри?</h2>
+    <ul>
+      <li>600+ утилит и фреймворков: от Metasploit до Recon-ng</li>
+      <li>Собственный OSINT-модуль с 50+ шаблонами для разведки</li>
+      <li>Deep anonymity: TOR, I2P, VPN, ProxyChains, Tunneling</li>
+      <li>TaskManager с YAML-конфигами для атаки в 1 клик</li>
+      <li>UI с низким потреблением — мрак, скорость, контроль</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>🖼️ Галерея</h2>
+    <p>Смотри. Чувствуй. Это тьма в коде:</p>
+    <img src="images/1.png" alt="UI 1" style="width: 100%; border-radius: 8px; margin-top: 20px;">
+    <img src="images/2.png" alt="UI 2" style="width: 100%; border-radius: 8px; margin-top: 20px;">
+    <img src="images/3.png" alt="UI 3" style="width: 100%; border-radius: 8px; margin-top: 20px;">
+  </section>
+
+  <section class="section btns">
+    <h2>🔗 Навигация</h2>
+    <a href="https://t.me/MinteriaOS_bot" target="_blank">🤖 Основной Бот</a>
+    <a href="https://t.me/MinteriaOS_Keysbot" target="_blank">🗝️ Ключи</a>
+    <a href="https://t.me/Minteria_su" target="_blank">💬 Техподдержка</a>
+    <a href="https://github.com/MinteriaOS" target="_blank">💻 GitHub</a>
+  </section>
+
+  <footer>
+    &copy; 2025 MinteriaOS — Разработано хакерами для хакеров. Твоя свобода — твоя сила.
+  </footer>
 
   <script>
-    const bioText = "MinteriaOS: Хакинг, безопасность, мощные инструменты.";
-    const bioElement = document.getElementById("bio");
-    const buttonContainer = document.getElementById("button-container");
-    bioElement.innerHTML = "";
-    bioText.split("").forEach((char) => {
-      const span = document.createElement("span");
-      span.textContent = char;
-      span.classList.add("hidden");
-      bioElement.appendChild(span);
+    // MATRIX RAIN
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    let letters = Array(256).join("0").split("");
+    const draw = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ff99";
+      ctx.font = "14pt monospace";
+      letters.map((y_pos, index) => {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        const x_pos = index * 14;
+        ctx.fillText(text, x_pos, y_pos);
+        letters[index] = (y_pos > canvas.height + Math.random() * 10000) ? 0 : y_pos + 14;
+      });
+    };
+    setInterval(draw, 33);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
-    gsap.to("#bio span.hidden", {
-      opacity: 1,
-      duration: 1.5,
-      stagger: 0.05,
-      ease: "power2.out",
-      onComplete: () => {
-        gsap.to(buttonContainer, {
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out"
-        });
-      }
+
+    // PRELOADER HIDE
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+      }, 2500);
     });
-
-    const audioPlayer = document.getElementById("audioPlayer"),
-      progressBar = document.getElementById("progressBar"),
-      progress = document.getElementById("progress"),
-      currentTimeElement = document.getElementById("currentTime"),
-      durationElement = document.getElementById("duration"),
-      songs = Array.from({ length: 15 }, (_, i) => `${i + 1}.mp3`);
-    let currentSongIndex = 0;
-
-    function formatTime(t) {
-      const m = Math.floor(t / 60),
-        s = Math.floor(t % 60);
-      return `${m}:${s < 10 ? "0" : ""}${s}`;
-    }
-
-    function getRandomSongIndex() {
-      return Math.floor(Math.random() * songs.length);
-    }
-
-    function playNextSong() {
-      currentSongIndex = getRandomSongIndex();
-      audioPlayer.src = songs[currentSongIndex];
-      audioPlayer.play().catch(() => {
-        window.addEventListener("click", startMusicOnInteraction);
-        window.addEventListener("keydown", startMusicOnInteraction);
-      });
-    }
-
-    function playPreviousSong() {
-      currentSongIndex = getRandomSongIndex();
-      audioPlayer.src = songs[currentSongIndex];
-      audioPlayer.play();
-    }
-
-    function togglePause() {
-      audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause();
-    }
-
-    function startMusicOnInteraction() {
-      audioPlayer.play();
-      window.removeEventListener("click", startMusicOnInteraction);
-      window.removeEventListener("keydown", startMusicOnInteraction);
-    }
-
-    function updateProgress() {
-      const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-      progress.style.width = `${percent}%`;
-      currentTimeElement.textContent = formatTime(audioPlayer.currentTime);
-    }
-
-    function setDuration() {
-      durationElement.textContent = formatTime(audioPlayer.duration);
-    }
-
-    function seek(e) {
-      const x = e.offsetX,
-        width = progressBar.clientWidth;
-      audioPlayer.currentTime = (x / width) * audioPlayer.duration;
-    }
-
-    audioPlayer.addEventListener("ended", playNextSong);
-    audioPlayer.addEventListener("timeupdate", updateProgress);
-    audioPlayer.addEventListener("loadedmetadata", setDuration);
-    progressBar.addEventListener("click", seek);
-    document.getElementById("prevButton").addEventListener("click", playPreviousSong);
-    document.getElementById("pauseButton").addEventListener("click", togglePause);
-    document.getElementById("nextButton").addEventListener("click", playNextSong);
-
-    playNextSong();
-
-    const snowflakesContainer = document.getElementById("snowflakes");
-    function createSnowflake() {
-      const flake = document.createElement("div");
-      flake.classList.add("snowflake");
-      flake.style.left = `${Math.random() * 100}vw`;
-      flake.style.opacity = Math.random();
-      snowflakesContainer.appendChild(flake);
-      gsap.to(flake, {
-        y: window.innerHeight + 10,
-        duration: 5 * Math.random() + 5,
-        ease: "linear",
-        onComplete: () => flake.remove(),
-      });
-      gsap.to(flake, {
-        x: 100 * Math.random() - 50,
-        duration: 5 * Math.random() + 5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
-    }
-    setInterval(createSnowflake, 500);
   </script>
 </body>
 </html>
