@@ -153,12 +153,41 @@
       font-size: 1.2rem;
       letter-spacing: 2px;
     }
+
+    .cursor {
+      font-size: 2rem;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Typing animation */
+    .typing {
+      display: inline-block;
+      border-right: 3px solid #00ff99;
+      padding-right: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <div id="preloader">
     <div class="logo">MinteriaOS</div>
     <div class="booting">Booting system<span id="dots"></span></div>
+    <div class="cursor">█</div>
   </div>
 
   <canvas id="matrix"></canvas>
@@ -189,7 +218,7 @@
   <section class="section">
     <h2>🖼️ Интерфейс</h2>
     <p>Только минимализм, только тьма:</p>
-    <img src="images/1.png" alt="UI Screenshot" style="width: 100%; border-radius: 8px; margin-top: 20px;">
+    <img src="1.png" alt="UI Screenshot" style="width: 100%; border-radius: 8px; margin-top: 20px;">
   </section>
 
   <section class="section btns">
