@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MinteriaOS — Хакерская OS нового поколения</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background: black;
+      color: #00ff99;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* PRELOADER */
+    #preloader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: #00ff99;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      font-family: monospace;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    #loaderContent h1.logo {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #00ff99;
+      letter-spacing: 3px;
+      animation: glowLogo 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowLogo {
+      from { text-shadow: 0 0 10px #00ff99; }
+      to { text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99; }
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    body.loaded #preloader {
+      display: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    header h1 {
+      font-size: 4rem;
+      color: #00ff99;
+      text-shadow: 0 0 10px #00ff99;
+      animation: glow 2s infinite alternate;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      margin-top: 10px;
+      color: #aaffcc;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00ff99;
+      }
+      to {
+        text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99;
+      }
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid #00ff99;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ff99;
+    }
+
+    .section h2 {
+      color: #00ffcc;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .section p, .section li {
+      color: #ccffe0;
+      margin-bottom: 10px;
+    }
+
+    .btns {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btns a {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px;
+      background: #00ff99;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00ff99;
+      transition: 0.3s;
+    }
+
+    .btns a:hover {
+      background: black;
+      color: #00ff99;
+      border: 1px solid #00ff99;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      font-size: 0.9rem;
+      color: #66ffcc;
+    }
+
+    /* Стили для слайдера изображений */
+    .gallery {
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .gallery-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .gallery-buttons button {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #00ff99;
+      border: none;
+      padding: 10px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .gallery-buttons button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div id="loaderContent">
+      <h1 class="logo">MinteriaOS</h1>
+      <p>Booting system<span class="blink">█</span></p>
+    </div>
+  </div>
+
+  <canvas id="matrix"></canvas>
+
+  <header>
+    <h1>MinteriaOS</h1>
+    <p>Хакерская операционная система нового поколения</p>
+  </header>
+
+  <!-- Новый раздел для страницы загрузки -->
+  <section class="section">
+    <h2>MinteriaOS - Download</h2>
+    <p><strong>Первая версия:</strong> MinteriaOS 1</p>
+
+    <!-- Слайдер изображений -->
+    <div class="gallery">
+      <img src="images/1.png" alt="UI 1" id="slider-image">
+      <div class="gallery-buttons">
+        <button id="prev-btn">←</button>
+        <button id="next-btn">→</button>
+      </div>
+    </div>
+
+    <div class="btns">
+      <a href="path_to_download/MinteriaOS_1.iso" download>Скачать MinteriaOS 1</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 MinteriaOS — Разработано хакерами для хакеров. Твоя свобода — твоя сила.
+  </footer>
+
+  <script>
+    // MATRIX RAIN
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    let letters = Array(256).join("0").split("");
+    const draw = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ff99";
+      ctx.font = "14pt monospace";
+      letters.map((y_pos, index) => {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        const x_pos = index * 14;
+        ctx.fillText(text, x_pos, y_pos);
+        letters[index] = (y_pos > canvas.height + Math.random() * 10000) ? 0 : y_pos + 14;
+      });
+    };
+    setInterval(draw, 33);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // PRELOADER HIDE
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+      }, 2500);
+    });
+
+    // Слайдер изображений
+    const images = ['images/1.png', 'images/2.png', 'images/3.png'];
+    let currentImageIndex = 0;
+    const sliderImage = document.getElementById('slider-image');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    const updateImage = () => {
+      sliderImage.src = images[currentImageIndex];
+    };
+
+    prevBtn.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex === 0) ? images.length - 1 : currentImageIndex - 1;
+      updateImage();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex === images.length - 1) ? 0 : currentImageIndex + 1;
+      updateImage();
+    });
+  </script>
+</body>
+</html>
