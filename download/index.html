@@ -25,7 +25,6 @@
       z-index: -1;
     }
 
-    /* PRELOADER */
     #preloader {
       position: fixed;
       width: 100%;
@@ -149,16 +148,19 @@
       color: #66ffcc;
     }
 
-    /* Стили для слайдера изображений */
     .gallery {
       position: relative;
       overflow: hidden;
       margin-top: 20px;
     }
 
-    .gallery img {
+    .slider-img {
       width: 100%;
       border-radius: 8px;
+      display: none;
+    }
+
+    .slider-img.active {
       display: block;
     }
 
@@ -183,6 +185,47 @@
     .gallery-buttons button:hover {
       background-color: rgba(0, 0, 0, 0.8);
     }
+
+    /* Модальное окно */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      display: none;
+    }
+
+    .modal-content {
+      background: #111;
+      padding: 30px;
+      border: 1px solid #00ff99;
+      color: #00ff99;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ff99;
+      max-width: 400px;
+    }
+
+    .modal-content button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ff99;
+      color: black;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .modal-content button:hover {
+      background: black;
+      color: #00ff99;
+      border: 1px solid #00ff99;
+    }
   </style>
 </head>
 <body>
@@ -201,14 +244,15 @@
     <p>Хакерская операционная система нового поколения</p>
   </header>
 
-  <!-- Новый раздел для страницы загрузки -->
+  <!-- Секция загрузки -->
   <section class="section">
     <h2>MinteriaOS - Download</h2>
     <p><strong>Первая версия:</strong> MinteriaOS 1</p>
 
-    <!-- Слайдер изображений -->
+    <!-- Слайдер -->
     <div class="gallery">
-      <img src="images/1.png" alt="UI 1" id="slider-image">
+      <img src="images/1.jpg" alt="UI 1" class="slider-img active">
+      <img src="images/2.jpg" alt="UI 2" class="slider-img">
       <div class="gallery-buttons">
         <button id="prev-btn">←</button>
         <button id="next-btn">→</button>
@@ -216,13 +260,21 @@
     </div>
 
     <div class="btns">
-      <a href="path_to_download/MinteriaOS_1.iso" download>Скачать MinteriaOS 1</a>
+      <a href="#" id="download-btn">Скачать MinteriaOS 1</a>
     </div>
   </section>
 
   <footer>
     &copy; 2025 MinteriaOS — Разработано хакерами для хакеров. Твоя свобода — твоя сила.
   </footer>
+
+  <!-- Модальное окно -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <p>⚠️ MinteriaOS ещё находится в разработке.<br>Следите за обновлениями!</p>
+      <button onclick="document.getElementById('modal').style.display='none'">ОК</button>
+    </div>
+  </div>
 
   <script>
     // MATRIX RAIN
@@ -250,32 +302,37 @@
       canvas.height = window.innerHeight;
     });
 
-    // PRELOADER HIDE
+    // PRELOADER
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.body.classList.add("loaded");
       }, 2500);
     });
 
-    // Слайдер изображений
-    const images = ['1.jpg', '2.jpg'];
-    let currentImageIndex = 0;
-    const sliderImage = document.getElementById('slider-image');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
+    // Слайдер
+    const sliderImages = document.querySelectorAll('.slider-img');
+    let sliderIndex = 0;
 
-    const updateImage = () => {
-      sliderImage.src = images[currentImageIndex];
+    const showImage = (index) => {
+      sliderImages.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
     };
 
-    prevBtn.addEventListener('click', () => {
-      currentImageIndex = (currentImageIndex === 0) ? images.length - 1 : currentImageIndex - 1;
-      updateImage();
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      sliderIndex = (sliderIndex === 0) ? sliderImages.length - 1 : sliderIndex - 1;
+      showImage(sliderIndex);
     });
 
-    nextBtn.addEventListener('click', () => {
-      currentImageIndex = (currentImageIndex === images.length - 1) ? 0 : currentImageIndex + 1;
-      updateImage();
+    document.getElementById('next-btn').addEventListener('click', () => {
+      sliderIndex = (sliderIndex === sliderImages.length - 1) ? 0 : sliderIndex + 1;
+      showImage(sliderIndex);
+    });
+
+    // Кнопка скачать
+    document.getElementById('download-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('modal').style.display = 'flex';
     });
   </script>
 </body>
