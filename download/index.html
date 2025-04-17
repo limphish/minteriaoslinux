@@ -5,230 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MinteriaOS — Хакерская OS нового поколения</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    body {
-      background: black;
-      color: #00ff99;
-      overflow-x: hidden;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Courier New', Courier, monospace; }
+    body { background: black; color: #00ff99; overflow-x: hidden; }
+    canvas { position: fixed; top: 0; left: 0; z-index: -1; }
     #preloader {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: black;
-      color: #00ff99;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 9999;
-      font-family: monospace;
-      font-size: 16px;
-      text-align: center;
+      position: fixed; width: 100%; height: 100%; background: black; color: #00ff99;
+      display: flex; justify-content: center; align-items: center; flex-direction: column;
+      z-index: 9999; font-family: monospace; font-size: 16px; text-align: center;
     }
-
     #loaderContent h1.logo {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 0 20px #00ff99;
-      letter-spacing: 3px;
-      animation: glowLogo 1.5s ease-in-out infinite alternate;
+      font-size: 3rem; margin-bottom: 10px; text-shadow: 0 0 20px #00ff99;
+      letter-spacing: 3px; animation: glowLogo 1.5s ease-in-out infinite alternate;
     }
-
     @keyframes glowLogo {
       from { text-shadow: 0 0 10px #00ff99; }
       to { text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99; }
     }
-
-    .blink {
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    body.loaded #preloader {
-      display: none;
-    }
+    .blink { animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    body.loaded #preloader { display: none; }
 
     header {
-      text-align: center;
-      padding: 60px 20px 30px;
-      background: rgba(0, 0, 0, 0.8);
+      text-align: center; padding: 60px 20px 30px; background: rgba(0, 0, 0, 0.8);
     }
-
     header h1 {
-      font-size: 4rem;
-      color: #00ff99;
-      text-shadow: 0 0 10px #00ff99;
+      font-size: 4rem; color: #00ff99; text-shadow: 0 0 10px #00ff99;
       animation: glow 2s infinite alternate;
     }
-
-    header p {
-      font-size: 1.3rem;
-      margin-top: 10px;
-      color: #aaffcc;
-    }
-
+    header p { font-size: 1.3rem; margin-top: 10px; color: #aaffcc; }
     @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #00ff99;
-      }
-      to {
-        text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99;
-      }
+      from { text-shadow: 0 0 10px #00ff99; }
+      to { text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99; }
     }
 
     .section {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 20px;
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid #00ff99;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #00ff99;
+      max-width: 900px; margin: 60px auto; padding: 20px;
+      background: rgba(10, 10, 10, 0.8); border: 1px solid #00ff99;
+      border-radius: 12px; box-shadow: 0 0 20px #00ff99;
     }
-
-    .section h2 {
-      color: #00ffcc;
-      font-size: 2rem;
-      margin-bottom: 15px;
-    }
-
-    .section p, .section li {
-      color: #ccffe0;
-      margin-bottom: 10px;
-    }
+    .section h2 { color: #00ffcc; font-size: 2rem; margin-bottom: 15px; }
+    .section p, .section li { color: #ccffe0; margin-bottom: 10px; }
 
     .btns {
-      margin-top: 30px;
-      text-align: center;
+      margin-top: 30px; text-align: center;
     }
-
     .btns a {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 10px;
-      background: #00ff99;
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00ff99;
-      transition: 0.3s;
+      display: inline-block; padding: 12px 24px; margin: 10px;
+      background: #00ff99; color: black; font-weight: bold;
+      text-decoration: none; border-radius: 8px;
+      box-shadow: 0 0 10px #00ff99; transition: 0.3s;
     }
-
     .btns a:hover {
-      background: black;
-      color: #00ff99;
-      border: 1px solid #00ff99;
+      background: black; color: #00ff99; border: 1px solid #00ff99;
     }
 
     footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      font-size: 0.9rem;
-      color: #66ffcc;
+      text-align: center; padding: 20px;
+      background: rgba(0, 0, 0, 0.8); font-size: 0.9rem; color: #66ffcc;
     }
 
     .gallery {
-      position: relative;
-      overflow: hidden;
-      margin-top: 20px;
+      position: relative; overflow: hidden; margin-top: 20px; min-height: 400px;
     }
-
     .slider-img {
-      width: 100%;
-      border-radius: 8px;
-      display: none;
+      width: 100%; border-radius: 8px; display: none;
     }
-
-    .slider-img.active {
-      display: block;
-    }
+    .slider-img.active { display: block; }
 
     .gallery-buttons {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
+      position: absolute; top: 50%; width: 100%;
+      display: flex; justify-content: space-between;
       transform: translateY(-50%);
     }
-
     .gallery-buttons button {
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #00ff99;
-      border: none;
-      padding: 10px;
-      font-size: 2rem;
-      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.5); color: #00ff99;
+      border: none; padding: 10px; font-size: 2rem; cursor: pointer;
     }
-
     .gallery-buttons button:hover {
       background-color: rgba(0, 0, 0, 0.8);
     }
 
-    /* Модальное окно */
     .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      display: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8); display: flex;
+      justify-content: center; align-items: center;
+      z-index: 10000; display: none;
     }
-
     .modal-content {
-      background: #111;
-      padding: 30px;
-      border: 1px solid #00ff99;
-      color: #00ff99;
-      text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #00ff99;
-      max-width: 400px;
+      background: #111; padding: 30px; border: 1px solid #00ff99;
+      color: #00ff99; text-align: center; border-radius: 12px;
+      box-shadow: 0 0 15px #00ff99; max-width: 400px;
     }
-
     .modal-content button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #00ff99;
-      color: black;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 6px;
+      margin-top: 20px; padding: 10px 20px; background: #00ff99;
+      color: black; border: none; font-weight: bold; cursor: pointer; border-radius: 6px;
     }
-
     .modal-content button:hover {
-      background: black;
-      color: #00ff99;
-      border: 1px solid #00ff99;
+      background: black; color: #00ff99; border: 1px solid #00ff99;
     }
   </style>
 </head>
 <body>
+
   <!-- Preloader -->
   <div id="preloader">
     <div id="loaderContent">
@@ -251,8 +129,6 @@
 
     <!-- Слайдер -->
     <div class="gallery">
-      <img src="images/1.jpg" alt="UI 1" class="slider-img active">
-      <img src="images/2.jpg" alt="UI 2" class="slider-img">
       <div class="gallery-buttons">
         <button id="prev-btn">←</button>
         <button id="next-btn">→</button>
@@ -276,6 +152,7 @@
     </div>
   </div>
 
+  <!-- Скрипт -->
   <script>
     // MATRIX RAIN
     const canvas = document.getElementById('matrix');
@@ -310,24 +187,37 @@
     });
 
     // Слайдер
-    const sliderImages = document.querySelectorAll('.slider-img');
-    let sliderIndex = 0;
+    const images = ['1.jpg', '2.jpg'];
+    const gallery = document.querySelector('.gallery');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentIndex = 0;
 
-    const showImage = (index) => {
-      sliderImages.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-      });
-    };
+    function updateSlider() {
+      const oldImg = gallery.querySelector('.slider-img');
+      if (oldImg) oldImg.remove();
 
-    document.getElementById('prev-btn').addEventListener('click', () => {
-      sliderIndex = (sliderIndex === 0) ? sliderImages.length - 1 : sliderIndex - 1;
-      showImage(sliderIndex);
+      const img = document.createElement('img');
+      img.src = images[currentIndex];
+      img.className = 'slider-img active';
+      img.alt = `Image ${currentIndex + 1}`;
+      img.onerror = () => {
+        img.src = 'https://via.placeholder.com/800x400?text=Image+not+found';
+      };
+      gallery.insertBefore(img, gallery.querySelector('.gallery-buttons'));
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+      updateSlider();
     });
 
-    document.getElementById('next-btn').addEventListener('click', () => {
-      sliderIndex = (sliderIndex === sliderImages.length - 1) ? 0 : sliderIndex + 1;
-      showImage(sliderIndex);
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider();
     });
+
+    updateSlider();
 
     // Кнопка скачать
     document.getElementById('download-btn').addEventListener('click', function(e) {
