@@ -1,191 +1,293 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>h1ntomail</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow: hidden;
-            background: black;
-            color: #0f0;
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-        .circle-video {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto;
-            box-shadow: 0 0 15px #0f0;
-        }
-        .circle-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .music-controls button:hover {
-            background-color: #0f0;
-        }
-        .music-controls button svg {
-            fill: black;
-        }
-        .progress-bar .progress {
-            background-color: #0f0;
-        }
-        .social-icons a {
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            background-color: black;
-            padding: 0.5rem;
-            border-radius: 9999px;
-        }
-        .social-icons a:hover {
-            transform: scale(1.1);
-            opacity: 0.9;
-        }
-        .social-icons img {
-            filter: grayscale(100%) contrast(1.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HACKER MODE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: '#000',
+            foreground: '#00ff00',
+            primary: '#00ff00',
+            button: '#003300',
+            buttonHover: '#006600',
+            muted: '#00cc00',
+          },
+          fontFamily: {
+            sans: ['Courier New', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+    body {
+      font-family: 'Courier New', monospace;
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+    }
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: black;
+    }
+    canvas {
+      display: block;
+    }
+    span.hidden {
+      opacity: 0;
+      display: inline-block;
+      white-space: pre;
+    }
+    .button-container {
+      opacity: 0;
+    }
+    .icon-button svg {
+      width: 48px;
+      height: 48px;
+      display: block;
+      fill: #00ff00;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .icon-button:hover svg {
+      transform: scale(1.1);
+      opacity: 0.9;
+      fill: #00cc00;
+    }
+    .music-controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .music-controls button {
+      background-color: #003300;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .music-controls button:hover {
+      background-color: #006600;
+      transform: scale(1.1);
+    }
+    .music-controls button svg {
+      width: 24px;
+      height: 24px;
+      fill: #00ff00;
+    }
+    .progress-container {
+      width: 100%;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .progress-bar {
+      flex-grow: 1;
+      height: 4px;
+      background-color: #004400;
+      position: relative;
+      cursor: pointer;
+    }
+    .progress-bar .progress {
+      height: 100%;
+      background-color: #00ff00;
+      width: 0%;
+    }
+    .time {
+      font-size: 14px;
+      color: #00cc00;
+    }
+  </style>
 </head>
-<body class="flex min-h-screen items-center justify-center bg-black text-green-500 p-4">
-    <canvas id="matrix"></canvas>
-    <main class="text-center space-y-6 max-w-2xl w-full px-4">
-        <div class="circle-video">
-            <video autoplay loop muted playsinline src="profile.mp4"></video>
-        </div>
-        <h1 class="text-4xl font-bold">h1ntomail</h1>
-        <p class="text-lg text-green-300">Женя лох</p>
-        <div class="flex justify-center gap-6 social-icons">
-            <a href="https://t.me/h1ntomail" target="_blank">
-                <img src="https://www.svgrepo.com/show/354443/telegram.svg" alt="Telegram" class="w-8 h-8 bg-black rounded-full">
-            </a>
-            <a href="https://github.com/h1ntomail" target="_blank">
-                <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="w-8 h-8 bg-white rounded-full">
-            </a>
-        </div>
-        <div class="music-controls">
-            <button id="prevButton" title="Назад">
-                <svg viewBox="0 0 24 24">
-                    <path d="M6 6v12h2V6H6zm10 0v12l-8-6 8-6z"/>
-                </svg>
-            </button>
-            <button id="pauseButton" title="Пауза">
-                <svg viewBox="0 0 24 24">
-                    <path d="M8 6h2v12H8V6zm6 0h2v12h-2V6z"/>
-                </svg>
-            </button>
-            <button id="nextButton" title="Вперед">
-                <svg viewBox="0 0 24 24">
-                    <path d="M6 6v12h2V6H6zm10 0v12l-8-6 8-6z" transform="scale(-1, 1) translate(-24, 0)"/>
-                </svg>
-            </button>
-        </div>
-        <div class="progress-container">
-            <span id="currentTime" class="text-sm">0:00</span>
-            <div class="progress-bar w-full h-1 bg-gray-700 mx-2 cursor-pointer">
-                <div class="progress h-full w-0"></div>
-            </div>
-            <span id="duration" class="text-sm">0:00</span>
-        </div>
-    </main>
-    <audio id="audioPlayer"></audio>
-    <script>
-        // Matrix rain effect
-        const canvas = document.getElementById("matrix");
-        const ctx = canvas.getContext("2d");
-        canvas.height = window.innerHeight;
-        canvas.width = window.innerWidth;
-        const letters = "01";
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
+<body class="flex min-h-screen items-center justify-center bg-background text-foreground p-4">
+  <canvas id="matrixCanvas" class="matrix"></canvas>
+  <main class="text-center space-y-8 max-w-3xl w-full px-4">
+    <img src="12.png" alt="Изображение" class="mx-auto w-32 h-32" />
+    <h1 class="text-4xl font-bold sm:text-5xl md:text-6xl">
+      <span class="text-primary">DARKNESS</span>
+    </h1>
+    <p id="bio" class="text-lg sm:text-xl text-muted">
+      Here may be many paths to victory, but our product — is the shortest.
+    </p>
+    <div id="button-container" class="button-container flex flex-wrap justify-center gap-6 mt-8">
+      <a href="https://t.me/ydark_client" target="_blank" class="icon-button">
+        <!-- SVG (unchanged) -->
+        <!-- SVG Code Here -->
+      </a>
+      <a href="https://t.me/ydarkproduct_bot" target="_blank" class="icon-button">
+        <!-- SVG (unchanged) -->
+        <!-- SVG Code Here -->
+      </a>
+    </div>
+    <div class="music-controls">
+      <button id="prevButton" title="Назад">
+        <svg viewBox="0 0 24 24"><path d="M6 6v12h2V6H6zm10 0v12l-8-6 8-6z"/></svg>
+      </button>
+      <button id="pauseButton" title="Пауза">
+        <svg viewBox="0 0 24 24"><path d="M8 6h2v12H8V6zm6 0h2v12h-2V6z"/></svg>
+      </button>
+      <button id="nextButton" title="Вперед">
+        <svg viewBox="0 0 24 24"><path d="M6 6v12h2V6H6zm10 0v12l-8-6 8-6z" transform="scale(-1, 1) translate(-24, 0)"/></svg>
+      </button>
+    </div>
+    <div class="progress-container">
+      <span id="currentTime" class="time">0:00</span>
+      <div class="progress-bar" id="progressBar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <span id="duration" class="time">0:00</span>
+    </div>
+  </main>
+  <audio id="audioPlayer"></audio>
+  <script>
+    const bioText = "Here may be many paths to victory, but our product — is the shortest.",
+      bioElement = document.getElementById("bio"),
+      buttonContainer = document.getElementById("button-container");
+    bioElement.innerHTML = "";
+    bioText.split("").forEach((char) => {
+      const span = document.createElement("span");
+      span.textContent = char;
+      span.classList.add("hidden");
+      bioElement.appendChild(span);
+    });
+    gsap.to("#bio span.hidden", {
+      opacity: 1,
+      duration: 1.5,
+      stagger: 0.05,
+      ease: "power2.out",
+      onComplete: () => {
+        gsap.to(buttonContainer, {
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out"
+        });
+      }
+    });
 
-        function drawMatrix() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#0f0";
-            ctx.font = fontSize + "px monospace";
+    const audioPlayer = document.getElementById("audioPlayer"),
+      progressBar = document.getElementById("progressBar"),
+      progress = document.getElementById("progress"),
+      currentTimeElement = document.getElementById("currentTime"),
+      durationElement = document.getElementById("duration"),
+      songs = Array.from({ length: 15 }, (_, i) => `${i + 1}.mp3`);
+    let currentSongIndex = 0;
 
-            for (let i = 0; i < drops.length; i++) {
-                const text = letters.charAt(Math.floor(Math.random() * letters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60),
+        s = Math.floor(seconds % 60);
+      return `${m}:${s < 10 ? "0" : ""}${s}`;
+    }
 
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
+    function getRandomSongIndex() {
+      return Math.floor(Math.random() * songs.length);
+    }
+
+    function playNextSong() {
+      currentSongIndex = getRandomSongIndex();
+      audioPlayer.src = songs[currentSongIndex];
+      audioPlayer.play().catch(() => {
+        window.addEventListener("click", startMusicOnInteraction);
+        window.addEventListener("keydown", startMusicOnInteraction);
+      });
+    }
+
+    function playPreviousSong() {
+      currentSongIndex = getRandomSongIndex();
+      audioPlayer.src = songs[currentSongIndex];
+      audioPlayer.play();
+    }
+
+    function togglePause() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+      } else {
+        audioPlayer.pause();
+      }
+    }
+
+    function startMusicOnInteraction() {
+      audioPlayer.play();
+      window.removeEventListener("click", startMusicOnInteraction);
+      window.removeEventListener("keydown", startMusicOnInteraction);
+    }
+
+    function updateProgress() {
+      const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+      progress.style.width = `${percent}%`;
+      currentTimeElement.textContent = formatTime(audioPlayer.currentTime);
+    }
+
+    function setDuration() {
+      durationElement.textContent = formatTime(audioPlayer.duration);
+    }
+
+    function seek(e) {
+      const clickX = e.offsetX,
+        width = progressBar.clientWidth,
+        duration = audioPlayer.duration;
+      audioPlayer.currentTime = (clickX / width) * duration;
+    }
+
+    audioPlayer.addEventListener("ended", playNextSong);
+    audioPlayer.addEventListener("timeupdate", updateProgress);
+    audioPlayer.addEventListener("loadedmetadata", setDuration);
+    progressBar.addEventListener("click", seek);
+    document.getElementById("prevButton").addEventListener("click", playPreviousSong);
+    document.getElementById("pauseButton").addEventListener("click", togglePause);
+    document.getElementById("nextButton").addEventListener("click", playNextSong);
+    playNextSong();
+
+    // Matrix effect
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const katakana = "0123456789";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    const drops = Array.from({ length: columns }, () => 1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ff00";
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = katakana[Math.floor(Math.random() * katakana.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
-        setInterval(drawMatrix, 33);
+        drops[i]++;
+      }
+    }
 
-        // Audio player
-        const audioPlayer = document.getElementById("audioPlayer");
-        const progressBar = document.querySelector(".progress-bar");
-        const progress = document.querySelector(".progress");
-        const currentTimeElement = document.getElementById("currentTime");
-        const durationElement = document.getElementById("duration");
-        const songs = Array.from({length: 5}, (_, i) => `${i + 1}.mp3`);
-        let currentSongIndex = 0;
-
-        function formatTime(s) {
-            const min = Math.floor(s / 60);
-            const sec = Math.floor(s % 60);
-            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
-        }
-
-        function playSong(index) {
-            audioPlayer.src = songs[index];
-            audioPlayer.play();
-        }
-
-        function togglePause() {
-            audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause();
-        }
-
-        function nextSong() {
-            currentSongIndex = (currentSongIndex + 1) % songs.length;
-            playSong(currentSongIndex);
-        }
-
-        function prevSong() {
-            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-            playSong(currentSongIndex);
-        }
-
-        function updateProgress() {
-            const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-            progress.style.width = `${percent}%`;
-            currentTimeElement.textContent = formatTime(audioPlayer.currentTime);
-        }
-
-        function setDuration() {
-            durationElement.textContent = formatTime(audioPlayer.duration);
-        }
-
-        function seek(e) {
-            const percent = e.offsetX / progressBar.offsetWidth;
-            audioPlayer.currentTime = percent * audioPlayer.duration;
-        }
-
-        document.getElementById("pauseButton").onclick = togglePause;
-        document.getElementById("nextButton").onclick = nextSong;
-        document.getElementById("prevButton").onclick = prevSong;
-        progressBar.onclick = seek;
-        audioPlayer.ontimeupdate = updateProgress;
-        audioPlayer.onloadedmetadata = setDuration;
-        audioPlayer.onended = nextSong;
-        playSong(currentSongIndex);
-    </script>
+    setInterval(drawMatrix, 50);
+  </script>
 </body>
 </html>
