@@ -1,120 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Limphish — Cyber OSINT</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberVisiting Card</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Share Tech Mono', monospace;
-      background: black;
-      color: #00ff00;
-      overflow-x: hidden;
     }
 
-    .matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: black;
-    }
-
-    canvas {
-      display: block;
-    }
-
-    .container {
+    body {
+      background-color: #0a0a0a;
+      color: #00ff9f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding-top: 80px;
-    }
-
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 3px solid #00ff00;
-      object-fit: cover;
-      box-shadow: 0 0 20px #00ff00;
+      background-image: radial-gradient(#0f0f0f 1px, transparent 1px);
+      background-size: 20px 20px;
     }
 
     h1 {
-      font-size: 3em;
-      margin: 20px 0 10px;
-      text-shadow: 0 0 10px #00ff00;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
     }
 
-    h2 {
-      font-weight: normal;
-      font-size: 1.2em;
-      color: #00ff99;
-      margin-bottom: 30px;
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      line-height: 1.5;
+      color: #00ff9f;
     }
 
     .links a {
       display: inline-block;
-      margin: 10px 15px;
-      padding: 10px 20px;
-      border: 2px solid #00ff00;
-      color: #00ff00;
+      margin: 10px;
+      padding: 12px 24px;
+      border: 2px solid #00ff9f;
+      color: #00ff9f;
       text-decoration: none;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
+      border-radius: 8px;
+      transition: 0.3s;
     }
 
     .links a:hover {
-      background-color: #00ff00;
-      color: black;
-      box-shadow: 0 0 10px #00ff00;
+      background-color: #00ff9f;
+      color: #0a0a0a;
+      box-shadow: 0 0 10px #00ff9f;
+    }
+
+    .glow {
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #00ff9f, 0 0 10px #00ff9f, 0 0 15px #00ff9f;
+      }
+      to {
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="matrix">
-    <canvas id="matrix"></canvas>
-  </div>
-  <div class="container">
-    <img src="your-profile.jpg" alt="Profile Picture" class="profile-pic">
-    <h1>limphish</h1>
-    <h2>cybersecurity | OSINT | hacking enthusiast</h2>
-    <div class="links">
-      <a href="https://t.me/yourtelegram" target="_blank">Telegram</a>
-      <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
-    </div>
-  </div>
+  <h1 class="glow">OSINT | CyberSec | Hacker</h1>
+  <p>Привет. Я занимаюсь OSINT-разведкой, кибербезопасностью, изучаю хакерскую культуру и делаю утилиты для инфосека. Здесь ты найдёшь ссылки на меня:</p>
 
-  <script>
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-    let letters = "abcdefghijklmnopqrstuvwxyz0123456789";
-    letters = letters.split("");
-    let fontSize = 14;
-    let columns = canvas.width / fontSize;
-    let drops = [];
-    for (let x = 0; x < columns; x++) drops[x] = 1;
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#0F0";
-      ctx.font = fontSize + "px monospace";
-      for (let i = 0; i < drops.length; i++) {
-        let text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-    setInterval(draw, 33);
-  </script>
+  <div class="links">
+    <a href="https://t.me/твой_ник" target="_blank">🟢 Telegram</a>
+    <a href="https://github.com/твой_ник" target="_blank">💻 GitHub</a>
+  </div>
 </body>
-
 </html>
