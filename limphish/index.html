@@ -1,174 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>limphish | OSINT & CyberSec</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limphish — Cyber OSINT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Share Tech Mono', monospace;
-    }
-
     body {
+      margin: 0;
+      font-family: 'Share Tech Mono', monospace;
       background: black;
-      color: #00ff9f;
-      overflow: hidden;
-      position: relative;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      color: #00ff00;
+      overflow-x: hidden;
     }
 
     .matrix {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       z-index: -1;
+      background: black;
     }
 
     canvas {
       display: block;
     }
 
-    .avatar {
+    .container {
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .profile-pic {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 3px solid #00ff9f;
-      margin-bottom: 20px;
-      box-shadow: 0 0 15px #00ff9f;
+      border: 3px solid #00ff00;
       object-fit: cover;
+      box-shadow: 0 0 20px #00ff00;
     }
 
     h1 {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff, 0 0 30px #00ffff;
+      font-size: 3em;
+      margin: 20px 0 10px;
+      text-shadow: 0 0 10px #00ff00;
     }
 
     h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: #ffffff99;
-      letter-spacing: 1px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      line-height: 1.5;
-      color: #00ff9f;
+      font-weight: normal;
+      font-size: 1.2em;
+      color: #00ff99;
+      margin-bottom: 30px;
     }
 
     .links a {
       display: inline-block;
-      margin: 10px;
-      padding: 12px 24px;
-      border: 2px solid #00ff9f;
-      color: #00ff9f;
+      margin: 10px 15px;
+      padding: 10px 20px;
+      border: 2px solid #00ff00;
+      color: #00ff00;
       text-decoration: none;
-      border-radius: 8px;
-      transition: 0.3s;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
     }
 
     .links a:hover {
-      background-color: #00ff9f;
-      color: #0a0a0a;
-      box-shadow: 0 0 15px #00ff9f;
-    }
-
-    .terminal {
-      background: rgba(0, 0, 0, 0.7);
-      border: 2px solid #00ff9f;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 600px;
-      color: #00ff9f;
-      font-size: 1rem;
-      text-align: left;
-      box-shadow: 0 0 10px #00ff9f;
-    }
-
-    .glow {
-      animation: glow 1.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 5px #00ff9f, 0 0 10px #00ff9f;
-      }
-      to {
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-      }
+      background-color: #00ff00;
+      color: black;
+      box-shadow: 0 0 10px #00ff00;
     }
   </style>
 </head>
+
 <body>
-  <canvas class="matrix"></canvas>
-
-  <img src="avatar.jpg" alt="Avatar" class="avatar" />
-  <h1 class="glow">limphish</h1>
-  <h2>OSINT • Cybersecurity • Hacking Enthusiast</h2>
-  <p>Слежу за цифровыми тенями, нахожу то, что спрятано. Исследую мир информационной безопасности и создаю хакинг-утилиты. Добро пожаловать в мой мир.</p>
-
-  <div class="links">
-    <a href="https://t.me/limphish" target="_blank">🔗 Telegram</a>
-    <a href="https://github.com/limphish" target="_blank">💻 GitHub</a>
-    <a href="resume.pdf" download>📄 Скачать резюме</a>
-    <a href="osint-tool.zip" download>🛠️ OSINT Tool</a>
+  <div class="matrix">
+    <canvas id="matrix"></canvas>
   </div>
-
-  <div class="terminal">
-    <p><span style="color:#00ffff">root@limphish:</span>~# nmap -sV target.com</p>
-    <p>Starting Nmap 7.80 ...</p>
-    <p>PORT    STATE SERVICE VERSION</p>
-    <p>22/tcp  open  ssh     OpenSSH 7.6p1</p>
-    <p>80/tcp  open  http    Apache httpd 2.4.29</p>
-    <p>443/tcp open  https   nginx 1.14.0</p>
-    <p><span style="color:#00ffff">root@limphish:</span>~#</p>
+  <div class="container">
+    <img src="your-profile.jpg" alt="Profile Picture" class="profile-pic">
+    <h1>limphish</h1>
+    <h2>cybersecurity | OSINT | hacking enthusiast</h2>
+    <div class="links">
+      <a href="https://t.me/yourtelegram" target="_blank">Telegram</a>
+      <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
+    </div>
   </div>
 
   <script>
-    const canvas = document.querySelector(".matrix");
+    const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
-
-    const katakana = "アカサタナハマヤラワ0123456789";
-    const chars = katakana.split("");
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(1);
-
+    let letters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    letters = letters.split("");
+    let fontSize = 14;
+    let columns = canvas.width / fontSize;
+    let drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = 1;
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#00FF00";
+      ctx.fillStyle = "#0F0";
       ctx.font = fontSize + "px monospace";
-
       for (let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
+        let text = letters[Math.floor(Math.random() * letters.length)];
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
-          drops[i] = 0;
-        }
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
       }
     }
-
-    setInterval(draw, 35);
+    setInterval(draw, 33);
   </script>
 </body>
+
 </html>
