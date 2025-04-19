@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>limphish | OSINT & CyberSec</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
@@ -15,17 +15,29 @@
     }
 
     body {
-      background-color: #0a0a0a;
+      background: black;
       color: #00ff9f;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
       text-align: center;
-      background-image: radial-gradient(#0f0f0f 1px, transparent 1px);
-      background-size: 20px 20px;
-      padding: 30px;
+    }
+
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    canvas {
+      display: block;
     }
 
     .avatar {
@@ -77,6 +89,18 @@
       box-shadow: 0 0 15px #00ff9f;
     }
 
+    .terminal {
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid #00ff9f;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      color: #00ff9f;
+      font-size: 1rem;
+      text-align: left;
+      box-shadow: 0 0 10px #00ff9f;
+    }
+
     .glow {
       animation: glow 1.5s ease-in-out infinite alternate;
     }
@@ -92,15 +116,59 @@
   </style>
 </head>
 <body>
+  <canvas class="matrix"></canvas>
+
   <img src="avatar.jpg" alt="Avatar" class="avatar" />
   <h1 class="glow">limphish</h1>
   <h2>OSINT • Cybersecurity • Hacking Enthusiast</h2>
-
-  <p>Слежу за цифровыми тенями, нахожу то, что спрятано. Исследую мир информационной безопасности и создаю полезные хакинг-утилиты. Добро пожаловать в мой мир.</p>
+  <p>Слежу за цифровыми тенями, нахожу то, что спрятано. Исследую мир информационной безопасности и создаю хакинг-утилиты. Добро пожаловать в мой мир.</p>
 
   <div class="links">
     <a href="https://t.me/limphish" target="_blank">🔗 Telegram</a>
     <a href="https://github.com/limphish" target="_blank">💻 GitHub</a>
+    <a href="resume.pdf" download>📄 Скачать резюме</a>
+    <a href="osint-tool.zip" download>🛠️ OSINT Tool</a>
   </div>
+
+  <div class="terminal">
+    <p><span style="color:#00ffff">root@limphish:</span>~# nmap -sV target.com</p>
+    <p>Starting Nmap 7.80 ...</p>
+    <p>PORT    STATE SERVICE VERSION</p>
+    <p>22/tcp  open  ssh     OpenSSH 7.6p1</p>
+    <p>80/tcp  open  http    Apache httpd 2.4.29</p>
+    <p>443/tcp open  https   nginx 1.14.0</p>
+    <p><span style="color:#00ffff">root@limphish:</span>~#</p>
+  </div>
+
+  <script>
+    const canvas = document.querySelector(".matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const katakana = "アカサタナハマヤラワ0123456789";
+    const chars = katakana.split("");
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00FF00";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 35);
+  </script>
 </body>
 </html>
