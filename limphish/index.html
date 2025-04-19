@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberVisiting Card</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #00ff9f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background-image: radial-gradient(#0f0f0f 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      line-height: 1.5;
+      color: #00ff9f;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      border: 2px solid #00ff9f;
+      color: #00ff9f;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .links a:hover {
+      background-color: #00ff9f;
+      color: #0a0a0a;
+      box-shadow: 0 0 10px #00ff9f;
+    }
+
+    .glow {
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #00ff9f, 0 0 10px #00ff9f, 0 0 15px #00ff9f;
+      }
+      to {
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="glow">OSINT | CyberSec | Hacker</h1>
+  <p>Привет. Я занимаюсь OSINT-разведкой, кибербезопасностью, изучаю хакерскую культуру и делаю утилиты для инфосека. Здесь ты найдёшь ссылки на меня:</p>
+
+  <div class="links">
+    <a href="https://t.me/твой_ник" target="_blank">🟢 Telegram</a>
+    <a href="https://github.com/твой_ник" target="_blank">💻 GitHub</a>
+  </div>
+</body>
+</html>
