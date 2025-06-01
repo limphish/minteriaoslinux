@@ -4,45 +4,58 @@
   <meta charset="UTF-8">
   <title>limphish</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Arial', sans-serif;
-      color: red;
-      overflow: hidden;
+    * {
+      box-sizing: border-box;
     }
 
-    h1 {
-      font-size: 4em;
-      text-align: center;
-      margin-top: 30px;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: red;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 50px;
+      background-color: rgba(0, 0, 0, 0.5); /* затемнение для читаемости */
     }
 
     .avatar {
-      display: block;
-      margin: 20px auto;
       width: 200px;
       height: 200px;
       border-radius: 50%;
       border: 5px solid red;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-top: 20px;
+      text-shadow: 1px 1px 2px black;
     }
 
     .links {
-      text-align: center;
       margin-top: 30px;
+      text-align: center;
     }
 
     .links a {
       display: inline-block;
       margin: 10px;
-      padding: 15px 25px;
+      padding: 12px 20px;
       font-size: 1.2em;
       color: white;
       background: darkred;
       border: 2px solid red;
-      border-radius: 10px;
+      border-radius: 8px;
       text-decoration: none;
       transition: background 0.3s;
     }
@@ -58,14 +71,15 @@
 </head>
 <body>
 
-  <h1>limphish</h1>
+  <div class="container">
+    <img src="avatar.png" alt="Avatar" class="avatar">
+    <h1>limphish</h1>
 
-  <img src="avatar.png" alt="Avatar" class="avatar">
-
-  <div class="links">
-    <a href="https://t.me/limphish" target="_blank">Telegram</a>
-    <a href="https://github.com/limphish" target="_blank">GitHub</a>
-    <a href="https://doxbin.com/user/limphish" target="_blank">Doxbin</a>
+    <div class="links">
+      <a href="https://t.me/limphish" target="_blank">Telegram</a>
+      <a href="https://github.com/limphish" target="_blank">GitHub</a>
+      <a href="https://doxbin.com/user/limphish" target="_blank">Doxbin</a>
+    </div>
   </div>
 
   <audio autoplay loop>
