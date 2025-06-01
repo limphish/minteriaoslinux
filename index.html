@@ -1,156 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Limphish</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>limphish</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
-      background: #0c0f1a;
-      color: #d0d8f0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a0a0a;
+      color: #ff2e2e;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 50px 20px;
-      position: relative;
-      overflow: hidden;
+      justify-content: flex-start;
+      padding-top: 40px;
     }
 
     img {
-      width: 180px;
-      height: 180px;
+      max-width: 200px;
       border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px #00bfff44;
+      box-shadow: 0 0 20px #ff0000;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: #00bfff;
-      text-shadow: 0 0 10px #fff, 0 0 20px #00bfff;
+      margin: 20px 0;
+      font-size: 2.5em;
+      color: #ff2e2e;
     }
 
-    .socials {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .socials a {
-      text-decoration: none;
-      color: #d0d8f0;
-      border: 2px solid #00bfff;
-      padding: 10px 20px;
-      border-radius: 12px;
-      transition: 0.3s;
-      backdrop-filter: blur(4px);
-    }
-
-    .socials a:hover {
-      background-color: #00bfff;
-      color: #0c0f1a;
-      transform: scale(1.05);
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #00bfff;
-      text-shadow: 0 0 10px #fff;
-    }
-
-    .projects {
+    .button-container, .projects {
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
-      width: 100%;
-      max-width: 800px;
+      align-items: center;
     }
 
-    .project-block {
-      background-color: #111522;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px #00000066;
+    .btn {
+      background-color: #1a0000;
+      color: #ff2e2e;
+      border: 2px solid #ff2e2e;
+      padding: 10px 30px;
+      margin: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
       transition: all 0.3s ease;
+      box-shadow: 0 0 10px #ff0000;
     }
 
-    .project-block:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px #00bfff88;
+    .btn:hover {
+      background-color: #ff2e2e;
+      color: #0a0a0a;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff0000;
     }
 
-    .project-block h3 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-      color: #00bfff;
-      text-shadow: 0 0 6px #ffffffaa;
+    .projects-title {
+      margin-top: 40px;
+      font-size: 1.8em;
+      color: #ff2e2e;
+      text-decoration: underline;
     }
 
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .project-link {
+      margin: 5px 0;
+      font-size: 1.1em;
     }
 
-    .links a {
-      color: #ffffff;
+    .project-link a {
+      color: #ff2e2e;
       text-decoration: none;
-      border-left: 4px solid #00bfff;
-      padding-left: 10px;
-      transition: 0.3s;
-      text-shadow: 0 0 4px #000;
     }
 
-    .links a:hover {
-      color: #00bfff;
-      margin-left: 5px;
+    .project-link a:hover {
+      text-decoration: underline;
+      color: #ff4b4b;
     }
   </style>
 </head>
 <body>
-  <img src="your_photo.jpg" alt="Limphish">
+  <img src="https://via.placeholder.com/200" alt="limphish avatar">
   <h1>limphish</h1>
 
-  <div class="socials">
-    <a href="https://t.me/yourusername" target="_blank">Telegram</a>
-    <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
-    <a href="https://doxbin.org/profile/yourdoxbin" target="_blank">Doxbin</a>
+  <div class="button-container">
+    <a class="btn" href="https://github.com/" target="_blank">GitHub</a>
+    <a class="btn" href="https://doxbin.com/" target="_blank">Doxbin</a>
+    <a class="btn" href="https://t.me/" target="_blank">Telegram</a>
   </div>
 
-  <h2>Проекты:</h2>
-
   <div class="projects">
-    <div class="project-block">
-      <h3>ExtraTeam Community</h3>
-      <div class="links">
-        <a href="https://t.me/extratm_bot" target="_blank">1. Основной бот</a>
-        <a href="https://t.me/extratr_bot" target="_blank">2. Партнер бот</a>
-        <a href="https://t.me/extratm_supportbot" target="_blank">3. Бот поддержка</a>
-        <a href="https://t.me/extra_helperbot" target="_blank">4. Бот Helper</a>
-        <a href="https://t.me/ExtraTeambot" target="_blank">5. Переходник команды</a>
-      </div>
-    </div>
-
-    <div class="project-block">
-      <h3>Minteria Community</h3>
-      <div class="links">
-        <a href="https://t.me/minteriaOS" target="_blank">MinteriaOS Linux</a>
-        <a href="https://t.me/+1TBuz3A9Hc81N2Qy" target="_blank">Minteria Black List</a>
-        <a href="https://t.me/+FPTyklACI-ZiZTli" target="_blank">Minteria Cybersecurity</a>
-      </div>
-    </div>
+    <div class="projects-title">Мои проекты:</div>
+    <div class="project-link"><a href="https://t.me/extratm_bot" target="_blank">1. Основной бот</a></div>
+    <div class="project-link"><a href="https://t.me/extratr_bot" target="_blank">2. Партнер бот</a></div>
+    <div class="project-link"><a href="https://t.me/extratm_supportbot" target="_blank">4. Бот поддержки</a></div>
+    <div class="project-link"><a href="https://t.me/extra_helperbot" target="_blank">5. Бот хелпер</a></div>
+    <div class="project-link"><a href="https://t.me/ExtraTeambot" target="_blank">6. Переходник тимы</a></div>
   </div>
 </body>
 </html>
