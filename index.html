@@ -1,239 +1,148 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MinteriaOS — Хакерская OS нового поколения</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limphish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background: black;
-      color: #00ff99;
-      overflow-x: hidden;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    /* PRELOADER */
-    #preloader {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: black;
-      color: #00ff99;
+      background: #0c0f1a;
+      color: #d0d8f0;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      z-index: 9999;
-      font-family: monospace;
-      font-size: 16px;
-      text-align: center;
+      align-items: center;
+      padding: 50px 20px;
     }
 
-    #loaderContent h1.logo {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 0 20px #00ff99;
-      letter-spacing: 3px;
-      animation: glowLogo 1.5s ease-in-out infinite alternate;
+    img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px #00bfff44;
     }
 
-    @keyframes glowLogo {
-      from { text-shadow: 0 0 10px #00ff99; }
-      to { text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99; }
-    }
-
-    .blink {
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    body.loaded #preloader {
-      display: none;
-    }
-
-    header {
-      text-align: center;
-      padding: 60px 20px 30px;
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    header h1 {
-      font-size: 4rem;
-      color: #00ff99;
-      text-shadow: 0 0 10px #00ff99;
-      animation: glow 2s infinite alternate;
-    }
-
-    header p {
-      font-size: 1.3rem;
-      margin-top: 10px;
-      color: #aaffcc;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #00ff99;
-      }
-      to {
-        text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99;
-      }
-    }
-
-    .section {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 20px;
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid #00ff99;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #00ff99;
-    }
-
-    .section h2 {
-      color: #00ffcc;
+    h1 {
       font-size: 2rem;
-      margin-bottom: 15px;
+      margin-bottom: 30px;
+      color: #00bfff;
     }
 
-    .section p, .section li {
-      color: #ccffe0;
-      margin-bottom: 10px;
+    .socials {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 40px;
     }
 
-    .btns {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .btns a {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 10px;
-      background: #00ff99;
-      color: black;
-      font-weight: bold;
+    .socials a {
       text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00ff99;
+      color: #d0d8f0;
+      border: 2px solid #00bfff;
+      padding: 10px 20px;
+      border-radius: 12px;
       transition: 0.3s;
     }
 
-    .btns a:hover {
-      background: black;
-      color: #00ff99;
-      border: 1px solid #00ff99;
+    .socials a:hover {
+      background-color: #00bfff;
+      color: #0c0f1a;
+      transform: scale(1.05);
     }
 
-    footer {
-      text-align: center;
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #00bfff;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .project-block {
+      background-color: #111522;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      font-size: 0.9rem;
-      color: #66ffcc;
+      border-radius: 16px;
+      box-shadow: 0 0 10px #00000066;
+      transition: all 0.3s ease;
+    }
+
+    .project-block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #00bfff88;
+    }
+
+    .project-block h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #00bfff;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .links a {
+      color: #d0d8f0;
+      text-decoration: none;
+      border-left: 4px solid #00bfff;
+      padding-left: 10px;
+      transition: 0.3s;
+    }
+
+    .links a:hover {
+      color: #00bfff;
+      margin-left: 5px;
     }
   </style>
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div id="loaderContent">
-      <h1 class="logo">MinteriaOS</h1>
-      <p>Booting system<span class="blink">█</span></p>
-    </div>
+  <img src="your_photo.jpg" alt="Limphish">
+  <h1>limphish.</h1>
+
+  <div class="socials">
+    <a href="https://t.me/yourusername" target="_blank">Telegram</a>
+    <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
+    <a href="https://doxbin.org/profile/yourdoxbin" target="_blank">Doxbin</a>
   </div>
 
-  <canvas id="matrix"></canvas>
+  <h2>Проекты:</h2>
 
-  <header>
-    <h1>MinteriaOS</h1>
-    <p>Хакерская операционная система нового поколения</p>
-  </header>
+  <div class="projects">
+    <div class="project-block">
+      <h3>ExtraTeam Community</h3>
+      <div class="links">
+        <a href="https://t.me/extratm_bot" target="_blank">1. Основной бот</a>
+        <a href="https://t.me/extratr_bot" target="_blank">2. Партнер бот</a>
+        <a href="https://t.me/extratm_supportbot" target="_blank">3. Бот поддержка</a>
+        <a href="https://t.me/extra_helperbot" target="_blank">4. Бот Helper</a>
+        <a href="https://t.me/ExtraTeambot" target="_blank">5. Переходник команды</a>
+      </div>
+    </div>
 
-  <section class="section">
-    <h2>☠️ О системе</h2>
-    <p><strong>MinteriaOS</strong> — это не просто линукс. Это цифровое оружие.</p>
-    <p>Создана для реальных операций: разведка, атака, защита и уклонение. Всё на одном ISO, всё на одной миссии — дать силу хакеру.</p>
-  </section>
-
-  <section class="section">
-    <h2>🟢 Что внутри?</h2>
-    <ul>
-      <li> 600+ утилит и фреймворков: от Metasploit до Recon-ng</li>
-      <li> Собственный OSINT-модуль с 50+ шаблонами для разведки</li>
-      <li> Deep anonymity: TOR, I2P, VPN, ProxyChains, Tunneling</li>
-      <li> TaskManager с YAML-конфигами для атаки в 1 клик</li>
-      <li> UI с низким потреблением — мрак, скорость, контроль</li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <h2>🖼️ Галерея</h2>
-    <p>Смотри. Чувствуй. Это тьма в коде:</p>
-    <img src="1.png" alt="UI 1" style="width: 100%; border-radius: 8px; margin-top: 20px;">
-  </section>
-
-  <section class="section btns">
-    <h2>🔗 Навигация</h2>
-    <a href="https://t.me/minteriaOS" target="_blank">📡 Основной канал</a>
-    <a href="https://t.me/MinteriaOS_bot" target="_blank">🤖 Основной Бот</a>
-    <a href="https://t.me/MinteriaOS_Keysbot" target="_blank">🗝️ Ключи</a>
-    <a href="https://t.me/Minteria_su" target="_blank">💬 Техподдержка</a>
-    <a href="https://github.com/MinteriaOS" target="_blank">💻 GitHub</a>
-  </section>
-
-  <footer>
-    &copy; 2025 MinteriaOS — Разработано хакерами для хакеров. Твоя свобода — твоя сила.
-  </footer>
-
-  <script>
-    // MATRIX RAIN
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-    let letters = Array(256).join("0").split("");
-    const draw = () => {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#00ff99";
-      ctx.font = "14pt monospace";
-      letters.map((y_pos, index) => {
-        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
-        const x_pos = index * 14;
-        ctx.fillText(text, x_pos, y_pos);
-        letters[index] = (y_pos > canvas.height + Math.random() * 10000) ? 0 : y_pos + 14;
-      });
-    };
-    setInterval(draw, 33);
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    // PRELOADER HIDE
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.body.classList.add("loaded");
-      }, 2500);
-    });
-  </script>
+    <div class="project-block">
+      <h3>Minteria Community</h3>
+      <div class="links">
+        <a href="https://t.me/minteriaOS" target="_blank">MinteriaOS Linux</a>
+        <a href="https://t.me/+1TBuz3A9Hc81N2Qy" target="_blank">Minteria Black List</a>
+        <a href="https://t.me/+FPTyklACI-ZiZTli" target="_blank">Minteria Cybersecurity</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
