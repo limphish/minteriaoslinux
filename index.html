@@ -117,78 +117,38 @@
       color: #00bfff;
       margin-left: 5px;
     }
-
-    .emoji-img {
-      position: fixed;
-      top: -60px;
-      width: 40px;
-      height: 40px;
-      filter: brightness(1000%) drop-shadow(0 0 5px white);
-      animation: fall linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-60px);
-      }
-      100% {
-        transform: translateY(110vh);
-      }
-    }
   </style>
 </head>
 <body>
-  <script>
-    const emojiImages = [
-      'https://em-content.zobj.net/thumbs/240/apple/354/mammoth_1f9a3.png',
-      'https://em-content.zobj.net/thumbs/240/apple/354/elephant_1f418.png',
-      'https://em-content.zobj.net/thumbs/240/apple/354/bear_1f43b.png'
-    ];
-
-    const count = 30;
-
-    for (let i = 0; i < count; i++) {
-      const img = document.createElement('img');
-      img.classList.add('emoji-img');
-      img.src = emojiImages[Math.floor(Math.random() * emojiImages.length)];
-      img.style.left = Math.random() * 100 + 'vw';
-      img.style.animationDuration = (4 + Math.random() * 6) + 's';
-      img.style.opacity = 0.8;
-      img.style.transform = `scale(${0.8 + Math.random() * 0.4})`;
-      document.body.appendChild(img);
-    }
-  </script>
-
   <img src="your_photo.jpg" alt="Limphish">
-  <h1>limphish 🐘🌌</h1>
+  <h1>limphish</h1>
 
   <div class="socials">
-    <a href="https://t.me/yourusername" target="_blank">📩 Telegram</a>
-    <a href="https://github.com/yourgithub" target="_blank">💻 GitHub</a>
-    <a href="https://doxbin.org/profile/yourdoxbin" target="_blank">🧠 Doxbin</a>
+    <a href="https://t.me/yourusername" target="_blank">Telegram</a>
+    <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
+    <a href="https://doxbin.org/profile/yourdoxbin" target="_blank">Doxbin</a>
   </div>
 
-  <h2>📂 Проекты:</h2>
+  <h2>Проекты:</h2>
 
   <div class="projects">
     <div class="project-block">
-      <h3>✨ ExtraTeam Community</h3>
+      <h3>ExtraTeam Community</h3>
       <div class="links">
-        <a href="https://t.me/extratm_bot" target="_blank">1. Основной бот 🧭</a>
-        <a href="https://t.me/extratr_bot" target="_blank">2. Партнер бот 🤝</a>
-        <a href="https://t.me/extratm_supportbot" target="_blank">3. Бот поддержка 🛠</a>
-        <a href="https://t.me/extra_helperbot" target="_blank">4. Бот Helper 👨‍💻</a>
-        <a href="https://t.me/ExtraTeambot" target="_blank">5. Переходник команды 🚀</a>
+        <a href="https://t.me/extratm_bot" target="_blank">1. Основной бот</a>
+        <a href="https://t.me/extratr_bot" target="_blank">2. Партнер бот</a>
+        <a href="https://t.me/extratm_supportbot" target="_blank">3. Бот поддержка</a>
+        <a href="https://t.me/extra_helperbot" target="_blank">4. Бот Helper</a>
+        <a href="https://t.me/ExtraTeambot" target="_blank">5. Переходник команды</a>
       </div>
     </div>
 
     <div class="project-block">
-      <h3>🧬 Minteria Community</h3>
+      <h3>Minteria Community</h3>
       <div class="links">
-        <a href="https://t.me/minteriaOS" target="_blank">💿 MinteriaOS Linux</a>
-        <a href="https://t.me/+1TBuz3A9Hc81N2Qy" target="_blank">📛 Minteria Black List</a>
-        <a href="https://t.me/+FPTyklACI-ZiZTli" target="_blank">🔒 Minteria Cybersecurity</a>
+        <a href="https://t.me/minteriaOS" target="_blank">MinteriaOS Linux</a>
+        <a href="https://t.me/+1TBuz3A9Hc81N2Qy" target="_blank">Minteria Black List</a>
+        <a href="https://t.me/+FPTyklACI-ZiZTli" target="_blank">Minteria Cybersecurity</a>
       </div>
     </div>
   </div>
