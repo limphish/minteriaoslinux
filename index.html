@@ -1,101 +1,90 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>limphish</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0a0a0a;
-      color: #ff2e2e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding-top: 40px;
-    }
-
-    img {
-      max-width: 200px;
-      border-radius: 50%;
-      box-shadow: 0 0 20px #ff0000;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      color: red;
+      overflow: hidden;
     }
 
     h1 {
-      margin: 20px 0;
-      font-size: 2.5em;
-      color: #ff2e2e;
-    }
-
-    .button-container, .projects {
+      font-size: 4em;
+      text-align: center;
       margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      position: relative;
+      animation: bloodDrip 2s infinite;
     }
 
-    .btn {
-      background-color: #1a0000;
-      color: #ff2e2e;
-      border: 2px solid #ff2e2e;
-      padding: 10px 30px;
+    .avatar {
+      display: block;
+      margin: 20px auto;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px solid red;
+      position: relative;
+      animation: bloodDrip 3s infinite;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .links a {
+      display: inline-block;
       margin: 10px;
+      padding: 15px 25px;
+      font-size: 1.2em;
+      color: white;
+      background: darkred;
+      border: 2px solid red;
+      border-radius: 10px;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px #ff0000;
+      position: relative;
+      overflow: hidden;
+      animation: bloodDrip 4s infinite;
+      transition: background 0.3s;
     }
 
-    .btn:hover {
-      background-color: #ff2e2e;
-      color: #0a0a0a;
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff0000;
+    .links a:hover {
+      background: crimson;
     }
 
-    .projects-title {
-      margin-top: 40px;
-      font-size: 1.8em;
-      color: #ff2e2e;
-      text-decoration: underline;
+    @keyframes bloodDrip {
+      0% { box-shadow: 0 0 10px red; }
+      50% { box-shadow: 0 10px 20px red; transform: translateY(2px); }
+      100% { box-shadow: 0 0 10px red; transform: translateY(0); }
     }
 
-    .project-link {
-      margin: 5px 0;
-      font-size: 1.1em;
-    }
-
-    .project-link a {
-      color: #ff2e2e;
-      text-decoration: none;
-    }
-
-    .project-link a:hover {
-      text-decoration: underline;
-      color: #ff4b4b;
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <img src="https://via.placeholder.com/200" alt="limphish avatar">
+
   <h1>limphish</h1>
 
-  <div class="button-container">
-    <a class="btn" href="https://github.com/" target="_blank">GitHub</a>
-    <a class="btn" href="https://doxbin.com/" target="_blank">Doxbin</a>
-    <a class="btn" href="https://t.me/" target="_blank">Telegram</a>
+  <img src="avatar.png" alt="Avatar" class="avatar">
+
+  <div class="links">
+    <a href="https://t.me/limphish" target="_blank">Telegram</a>
+    <a href="https://github.com/limphish" target="_blank">GitHub</a>
+    <a href="https://doxbin.com/user/limphish" target="_blank">Doxbin</a>
   </div>
 
-  <div class="projects">
-    <div class="projects-title">Мои проекты:</div>
-    <div class="project-link"><a href="https://t.me/extratm_bot" target="_blank">1. Основной бот</a></div>
-    <div class="project-link"><a href="https://t.me/extratr_bot" target="_blank">2. Партнер бот</a></div>
-    <div class="project-link"><a href="https://t.me/extratm_supportbot" target="_blank">4. Бот поддержки</a></div>
-    <div class="project-link"><a href="https://t.me/extra_helperbot" target="_blank">5. Бот хелпер</a></div>
-    <div class="project-link"><a href="https://t.me/ExtraTeambot" target="_blank">6. Переходник тимы</a></div>
-  </div>
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
 </body>
 </html>
