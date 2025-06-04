@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scarlet Night | Эскорт агентство</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background-color: #0d0d0d;
       color: #fff;
+      overflow-x: hidden;
     }
     header {
       background-color: #1a1a1a;
@@ -18,25 +24,28 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #990000;
+      animation: fadeInDown 1s ease;
     }
     header h1 {
       color: #e60000;
       margin: 0;
-      font-size: 28px;
+      font-size: 32px;
+      font-family: 'Playfair Display', serif;
     }
     nav a {
       color: #fff;
       margin-left: 30px;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.3s;
     }
     nav a:hover {
       color: #e60000;
+      transform: scale(1.1);
     }
     .hero {
-      background: url('https://i.imgur.com/W2EIDOH.jpg') center/cover no-repeat;
-      height: 80vh;
+      background: url('https://images.unsplash.com/photo-1587283050490-e6f9b7d5efc4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -49,19 +58,32 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.6);
+      z-index: 0;
     }
     .hero h2 {
-      font-size: 48px;
+      font-size: 56px;
       z-index: 1;
       color: #ff1a1a;
+      animation: fadeInUp 1.5s ease;
     }
     .content {
-      padding: 40px;
+      padding: 60px 10%;
       background-color: #1a1a1a;
+      animation: fadeIn 1.2s ease;
     }
-    .content h3 {
+    .section {
+      margin-bottom: 60px;
+    }
+    .section h3 {
       color: #e60000;
+      font-size: 28px;
       margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+    .section p {
+      line-height: 1.8;
+      font-size: 18px;
+      color: #ccc;
     }
     footer {
       background: #0d0d0d;
@@ -86,6 +108,7 @@
       padding: 40px;
       text-align: center;
       max-width: 400px;
+      animation: fadeIn 1s ease;
     }
     .age-box h2 {
       margin-bottom: 20px;
@@ -104,61 +127,82 @@
     .age-box button:hover {
       background: #ff1a1a;
     }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
 <div id="age-modal">
   <div class="age-box">
-    <h2>Вам уже есть 18 лет?</h2>
-    <button onclick="enterSite()">Да, мне есть 18</button>
-    <button onclick="window.location.href='https://minteria.live'">Нет</button>
+    <h2>Вам уже есть 18 лет? 🔞</h2>
+    <button onclick="enterSite()">Да, мне есть 18 ✅</button>
+    <button onclick="window.location.href='https://google.com'">Нет ❌</button>
   </div>
 </div>
 
 <header>
-  <h1><a href="#" style="color: inherit; text-decoration: none;">Scarlet Night</a></h1>
+  <h1><a href="#" style="color: inherit; text-decoration: none;">Scarlet Night 🌃</a></h1>
   <nav>
-    <a href="#models">Модели</a>
-    <a href="#vip">VIP модели</a>
-    <a href="#search">Поиск</a>
-    <a href="#guide">Инструкция</a>
-    <a href="#contact">Связь</a>
+    <a href="#models">👠 Модели</a>
+    <a href="#vip">💎 VIP</a>
+    <a href="#search">🔍 Поиск</a>
+    <a href="#guide">📘 Инструкция</a>
+    <a href="#contact">📞 Связь</a>
   </nav>
 </header>
 
 <div class="hero">
-  <h2>Добро пожаловать в Scarlet Night</h2>
+  <h2>Добро пожаловать в мир страсти и элегантности</h2>
 </div>
 
-<div class="content" id="models">
-  <h3>Наши модели</h3>
-  <p>Только самые изысканные, утонченные и красивые девушки. Мы тщательно подходим к отбору, чтобы предложить вам высочайший уровень сервиса и незабываемые впечатления.</p>
-</div>
+<div class="content">
+  <section class="section" id="models">
+    <h3>👠 Наши модели</h3>
+    <p>Scarlet Night представляет коллекцию очаровательных и умных девушек, готовых подарить вам восхитительный опыт. 🌹 Все наши модели тщательно отобраны, обладают не только внешней привлекательностью, но и высоким уровнем общения, культуры и этикета. Идеальные спутницы для вашего досуга, светских мероприятий и отдыха.</p>
+  </section>
 
-<div class="content" id="vip">
-  <h3>VIP модели</h3>
-  <p>Для особых клиентов — девушки премиум-класса. Конфиденциальность, элитность, сопровождение на высшем уровне.</p>
-</div>
+  <section class="section" id="vip">
+    <h3>💎 VIP модели</h3>
+    <p>Для наших взыскательных клиентов мы предлагаем эксклюзивных девушек VIP-класса. 👑 Эти спутницы сочетают в себе утонченную красоту, безупречный стиль и умение поддержать изысканную беседу. Идеальный выбор для деловых встреч, частных вечеринок и отдыха класса люкс.</p>
+  </section>
 
-<div class="content" id="search">
-  <h3>Поиск</h3>
-  <p>Подберите идеальную спутницу по вашим предпочтениям — рост, внешность, интересы и многое другое.</p>
-</div>
+  <section class="section" id="search">
+    <h3>🔍 Поиск</h3>
+    <p>Удобный поиск поможет вам найти именно ту, которая соответствует вашим желаниям. 💋 Вы можете фильтровать девушек по внешности, росту, интересам, опыту и другим параметрам. Мы уважаем ваши предпочтения и поможем подобрать идеальную спутницу.</p>
+  </section>
 
-<div class="content" id="guide">
-  <h3>Инструкция</h3>
-  <p>Всё просто: выберите девушку, свяжитесь с нами и насладитесь великолепным временем. Полная конфиденциальность гарантирована.</p>
-</div>
+  <section class="section" id="guide">
+    <h3>📘 Инструкция</h3>
+    <p>Пользоваться нашим сервисом легко:
+      <br>1. Выберите девушку, которая вам приглянулась.
+      <br>2. Свяжитесь с нами через удобный мессенджер.
+      <br>3. Согласуйте детали и наслаждайтесь моментом. 💖
+      <br>Мы гарантируем полную конфиденциальность, безопасность и высокий уровень сервиса.
+    </p>
+  </section>
 
-<div class="content" id="contact">
-  <h3>Связь с нами</h3>
-  <p>Email: <a href="mailto:contact@scarletnight.com" style="color: #ff1a1a">contact@scarletnight.com</a></p>
-  <p>Telegram: <a href="https://t.me/scarletnight_support" style="color: #ff1a1a">@scarletnight_support</a></p>
+  <section class="section" id="contact">
+    <h3>📞 Связь с нами</h3>
+    <p>Готовы ответить на любые ваши вопросы и помочь с выбором модели.
+      <br>Email: <a href="mailto:contact@scarletnight.com" style="color: #ff1a1a">contact@scarletnight.com</a>
+      <br>Telegram: <a href="https://t.me/scarletnight_support" style="color: #ff1a1a">@scarletnight_support</a>
+    </p>
+  </section>
 </div>
 
 <footer>
-  &copy; 2025 Scarlet Night. Все права защищены.
+  &copy; 2025 Scarlet Night. Все права защищены. ❤️
 </footer>
 
 <script>
