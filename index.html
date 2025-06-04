@@ -1,115 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>limphish</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scarlet Night | Эскорт агентство</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-      color: red;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
     }
-
-    .container {
+    header {
+      background-color: #1a1a1a;
+      padding: 20px 40px;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding-top: 50px;
-      background-color: rgba(0, 0, 0, 0.5); /* затемнение */
+      border-bottom: 2px solid #990000;
     }
-
-    .avatar {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 5px solid red;
-      object-fit: cover;
-      animation: swing 3s ease-in-out infinite;
+    header h1 {
+      color: #e60000;
+      margin: 0;
+      font-size: 28px;
     }
-
-    h1 {
-      font-size: 3em;
-      margin-top: 20px;
-      text-shadow: 1px 1px 2px black;
-      animation: pulse 2s infinite;
-    }
-
-    .links {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .links a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      font-size: 1.2em;
-      color: white;
-      background: darkred;
-      border: 2px solid red;
-      border-radius: 8px;
+    nav a {
+      color: #fff;
+      margin-left: 30px;
       text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #e60000;
+    }
+    .hero {
+      background: url('https://i.imgur.com/W2EIDOH.jpg') center/cover no-repeat;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+    }
+    .hero h2 {
+      font-size: 48px;
+      z-index: 1;
+      color: #ff1a1a;
+    }
+    .content {
+      padding: 40px;
+      background-color: #1a1a1a;
+    }
+    .content h3 {
+      color: #e60000;
+      margin-bottom: 20px;
+    }
+    footer {
+      background: #0d0d0d;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #990000;
+      color: #aaa;
+    }
+    #age-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .age-box {
+      background: #1a1a1a;
+      border: 2px solid #e60000;
+      padding: 40px;
+      text-align: center;
+      max-width: 400px;
+    }
+    .age-box h2 {
+      margin-bottom: 20px;
+      color: #ff1a1a;
+    }
+    .age-box button {
+      margin: 10px;
+      padding: 10px 20px;
+      background: #e60000;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
       transition: background 0.3s;
-      animation: pulse-slow 3s infinite;
     }
-
-    .links a:hover {
-      background: crimson;
-    }
-
-    audio {
-      display: none;
-    }
-
-    /* Анимации */
-    @keyframes pulse {
-      0% { transform: scale(1); text-shadow: 0 0 5px red; }
-      50% { transform: scale(1.05); text-shadow: 0 0 15px red; }
-      100% { transform: scale(1); text-shadow: 0 0 5px red; }
-    }
-
-    @keyframes swing {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(2deg); }
-      50% { transform: rotate(0deg); }
-      75% { transform: rotate(-2deg); }
-      100% { transform: rotate(0deg); }
-    }
-
-    @keyframes pulse-slow {
-      0% { box-shadow: 0 0 5px red; }
-      50% { box-shadow: 0 0 20px red; }
-      100% { box-shadow: 0 0 5px red; }
+    .age-box button:hover {
+      background: #ff1a1a;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <img src="avatar.png" alt="Avatar" class="avatar">
-    <h1>limphish</h1>
-
-    <div class="links">
-      <a href="https://t.me/limphish" target="_blank">Telegram</a>
-      <a href="https://github.com/limphish" target="_blank">GitHub</a>
-      <a href="https://doxbin.com/user/limphish" target="_blank">Doxbin</a>
-    </div>
+<div id="age-modal">
+  <div class="age-box">
+    <h2>Вам уже есть 18 лет?</h2>
+    <button onclick="enterSite()">Да, мне есть 18</button>
+    <button onclick="window.location.href='https://minteria.live'">Нет</button>
   </div>
+</div>
 
-  <audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+<header>
+  <h1><a href="#" style="color: inherit; text-decoration: none;">Scarlet Night</a></h1>
+  <nav>
+    <a href="#models">Модели</a>
+    <a href="#vip">VIP модели</a>
+    <a href="#search">Поиск</a>
+    <a href="#guide">Инструкция</a>
+    <a href="#contact">Связь</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h2>Добро пожаловать в Scarlet Night</h2>
+</div>
+
+<div class="content" id="models">
+  <h3>Наши модели</h3>
+  <p>Только самые изысканные, утонченные и красивые девушки. Мы тщательно подходим к отбору, чтобы предложить вам высочайший уровень сервиса и незабываемые впечатления.</p>
+</div>
+
+<div class="content" id="vip">
+  <h3>VIP модели</h3>
+  <p>Для особых клиентов — девушки премиум-класса. Конфиденциальность, элитность, сопровождение на высшем уровне.</p>
+</div>
+
+<div class="content" id="search">
+  <h3>Поиск</h3>
+  <p>Подберите идеальную спутницу по вашим предпочтениям — рост, внешность, интересы и многое другое.</p>
+</div>
+
+<div class="content" id="guide">
+  <h3>Инструкция</h3>
+  <p>Всё просто: выберите девушку, свяжитесь с нами и насладитесь великолепным временем. Полная конфиденциальность гарантирована.</p>
+</div>
+
+<div class="content" id="contact">
+  <h3>Связь с нами</h3>
+  <p>Email: <a href="mailto:contact@scarletnight.com" style="color: #ff1a1a">contact@scarletnight.com</a></p>
+  <p>Telegram: <a href="https://t.me/scarletnight_support" style="color: #ff1a1a">@scarletnight_support</a></p>
+</div>
+
+<footer>
+  &copy; 2025 Scarlet Night. Все права защищены.
+</footer>
+
+<script>
+  function enterSite() {
+    document.getElementById('age-modal').style.display = 'none';
+  }
+</script>
 
 </body>
 </html>
