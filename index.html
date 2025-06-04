@@ -45,7 +45,7 @@
       transform: scale(1.1);
     }
     .hero {
-      background: url('https://images.unsplash.com/photo-1587283050490-e6f9b7d5efc4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1589998059171-5881641e6513?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       height: 90vh;
       display: flex;
       align-items: center;
@@ -83,7 +83,7 @@
       padding: 40px;
       box-shadow: 0 0 20px #ff1a1a33;
       transition: transform 0.3s, box-shadow 0.3s;
-      animation: slideIn 2s ease;
+      animation: slideIn 2s ease, pulse 8s infinite;
     }
     .section:hover {
       transform: scale(1.02);
@@ -149,38 +149,17 @@
       background: #ff1a1a;
       transform: scale(1.05);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes fadeInRight {
-      from { opacity: 0; transform: translateX(30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes zoomIn {
-      from { transform: scale(1.2); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    @keyframes slideIn {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes bounceIn {
-      0% { transform: scale(0.5); opacity: 0; }
-      60% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes zoomIn { from { transform: scale(1.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 60% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px #ff1a1a33; }
+      50% { box-shadow: 0 0 30px #ff1a1a99; }
     }
   </style>
 </head>
@@ -237,8 +216,8 @@
   <section class="section" id="contact">
     <h3>Связь с нами</h3>
     <p>Готовы ответить на любые ваши вопросы и помочь с выбором модели.
-      <br>Email: <a href="mailto:contact@хуй" style="color: #ff1a1a">contact@scarletnight.com</a>
-      <br>Telegram: <a href="https://t.me/@carlet_NightBot" style="color: #ff1a1a">@Scarlet_NightBot</a></p>
+      <br>Email: <a href="mailto:contact@scarletnight.com" style="color: #ff1a1a">contact@scarletnight.com</a>
+      <br>Telegram: <a href="https://t.me/scarletnight_support" style="color: #ff1a1a">@scarletnight_support</a></p>
   </section>
 </div>
 
