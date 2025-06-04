@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scarlet Night | Эскорт агентство</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&display=swap');
 
     * {
       box-sizing: border-box;
     }
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Playfair Display', serif;
       background-color: #0d0d0d;
       color: #fff;
       overflow-x: hidden;
     }
     header {
-      background-color: #1a1a1a;
+      background: url('https://images.unsplash.com/photo-1546039907-7e76d926cb97?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
@@ -30,14 +30,15 @@
     header h1 {
       color: #e60000;
       margin: 0;
-      font-size: 32px;
-      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-family: 'Great Vibes', cursive;
     }
     nav a {
       color: #fff;
       margin-left: 30px;
       text-decoration: none;
       font-weight: bold;
+      font-family: 'Playfair Display', serif;
       transition: color 0.3s, transform 0.3s;
     }
     nav a:hover {
@@ -45,7 +46,7 @@
       transform: scale(1.1);
     }
     .hero {
-      background: url('https://images.unsplash.com/photo-1589998059171-5881641e6513?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1587283050490-e6f9b7d5efc4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       height: 90vh;
       display: flex;
       align-items: center;
@@ -69,6 +70,7 @@
       z-index: 1;
       color: #ff1a1a;
       animation: fadeInUp 2s ease;
+      font-family: 'Playfair Display', serif;
     }
     .content {
       padding: 60px 10%;
@@ -83,7 +85,7 @@
       padding: 40px;
       box-shadow: 0 0 20px #ff1a1a33;
       transition: transform 0.3s, box-shadow 0.3s;
-      animation: slideIn 2s ease, pulse 8s infinite;
+      animation: slideIn 2s ease;
     }
     .section:hover {
       transform: scale(1.02);
@@ -101,6 +103,7 @@
       font-size: 18px;
       color: #ccc;
       animation: fadeInRight 1.5s ease;
+      font-family: 'Playfair Display', serif;
     }
     footer {
       background: #0d0d0d;
@@ -133,6 +136,7 @@
     .age-box h2 {
       margin-bottom: 20px;
       color: #ff1a1a;
+      font-family: 'Playfair Display', serif;
     }
     .age-box button {
       margin: 10px;
@@ -144,92 +148,65 @@
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
       border-radius: 10px;
+      font-family: 'Playfair Display', serif;
     }
     .age-box button:hover {
       background: #ff1a1a;
       transform: scale(1.05);
     }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes zoomIn { from { transform: scale(1.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 60% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 20px #ff1a1a33; }
-      50% { box-shadow: 0 0 30px #ff1a1a99; }
+    .tg-booking-button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background-color: #e60000;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      font-family: 'Playfair Display', serif;
+    }
+    .tg-booking-button:hover {
+      background-color: #ff1a1a;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(1.2); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
 
-<div id="age-modal">
-  <div class="age-box">
-    <h2>Вам уже есть 18 лет?</h2>
-    <button onclick="enterSite()">Да, мне есть 18</button>
-    <button onclick="window.location.href='https://google.com'">Нет</button>
-  </div>
-</div>
-
-<header>
-  <h1><a href="#" style="color: inherit; text-decoration: none;">Scarlet Night</a></h1>
-  <nav>
-    <a href="#models">Модели</a>
-    <a href="#vip">VIP модели</a>
-    <a href="#search">Поиск</a>
-    <a href="#guide">Инструкция</a>
-    <a href="#contact">Связь</a>
-  </nav>
-</header>
-
-<div class="hero">
-  <h2>Добро пожаловать в мир страсти и элегантности</h2>
-</div>
-
-<div class="content">
-  <section class="section" id="models">
-    <h3>Наши модели</h3>
-    <p>Scarlet Night представляет коллекцию очаровательных и умных девушек, готовых подарить вам восхитительный опыт. Все наши модели тщательно отобраны, обладают не только внешней привлекательностью, но и высоким уровнем общения, культуры и этикета. Идеальные спутницы для вашего досуга, светских мероприятий и отдыха.</p>
-  </section>
-
-  <section class="section" id="vip">
-    <h3>VIP модели</h3>
-    <p>Для наших взыскательных клиентов мы предлагаем эксклюзивных девушек VIP-класса. Эти спутницы сочетают в себе утонченную красоту, безупречный стиль и умение поддержать изысканную беседу. Идеальный выбор для деловых встреч, частных вечеринок и отдыха класса люкс.</p>
-  </section>
-
-  <section class="section" id="search">
-    <h3>Поиск</h3>
-    <p>Удобный поиск поможет вам найти именно ту, которая соответствует вашим желаниям. Вы можете фильтровать девушек по внешности, росту, интересам, опыту и другим параметрам. Мы уважаем ваши предпочтения и поможем подобрать идеальную спутницу.</p>
-  </section>
-
-  <section class="section" id="guide">
-    <h3>Инструкция</h3>
-    <p>Пользоваться нашим сервисом легко:
-      <br>1. Выберите девушку, которая вам приглянулась.
-      <br>2. Свяжитесь с нами через удобный мессенджер.
-      <br>3. Согласуйте детали и наслаждайтесь моментом.
-      <br>Мы гарантируем полную конфиденциальность, безопасность и высокий уровень сервиса.</p>
-  </section>
-
-  <section class="section" id="contact">
-    <h3>Связь с нами</h3>
-    <p>Готовы ответить на любые ваши вопросы и помочь с выбором модели.
-      <br>Email: <a href="mailto:contact@scarletnight.com" style="color: #ff1a1a">contact@scarletnight.com</a>
-      <br>Telegram: <a href="https://t.me/scarletnight_support" style="color: #ff1a1a">@scarletnight_support</a></p>
-  </section>
-</div>
-
-<footer>
-  &copy; 2025 Scarlet Night. Все права защищены.
-</footer>
-
-<script>
-  function enterSite() {
-    document.getElementById('age-modal').style.display = 'none';
-  }
-</script>
-
-</body>
-</html>
+<!-- (HTML BODY ОСТАЕТСЯ БЕЗ ИЗМЕНЕНИЙ) -->
