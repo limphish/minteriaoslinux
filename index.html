@@ -25,6 +25,7 @@
       align-items: center;
       border-bottom: 2px solid #990000;
       animation: fadeInDown 1s ease;
+      border-radius: 0 0 20px 20px;
     }
     header h1 {
       color: #e60000;
@@ -52,6 +53,8 @@
       text-align: center;
       color: #fff;
       position: relative;
+      border-radius: 0 0 40px 40px;
+      animation: zoomIn 2s ease;
     }
     .hero::after {
       content: '';
@@ -59,31 +62,45 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.6);
       z-index: 0;
+      border-radius: 0 0 40px 40px;
     }
     .hero h2 {
       font-size: 56px;
       z-index: 1;
       color: #ff1a1a;
-      animation: fadeInUp 1.5s ease;
+      animation: fadeInUp 2s ease;
     }
     .content {
       padding: 60px 10%;
       background-color: #1a1a1a;
-      animation: fadeIn 1.2s ease;
+      animation: fadeIn 1.5s ease;
     }
     .section {
       margin-bottom: 60px;
+      background: linear-gradient(145deg, #1c1c1c, #0e0e0e);
+      border: 2px solid #e60000;
+      border-radius: 50px;
+      padding: 40px;
+      box-shadow: 0 0 20px #ff1a1a33;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: slideIn 2s ease;
+    }
+    .section:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 40px #ff1a1a88;
     }
     .section h3 {
       color: #e60000;
       font-size: 28px;
       margin-bottom: 20px;
       font-family: 'Playfair Display', serif;
+      animation: fadeInLeft 1.5s ease;
     }
     .section p {
       line-height: 1.8;
       font-size: 18px;
       color: #ccc;
+      animation: fadeInRight 1.5s ease;
     }
     footer {
       background: #0d0d0d;
@@ -91,6 +108,8 @@
       padding: 20px;
       border-top: 1px solid #990000;
       color: #aaa;
+      border-radius: 40px 40px 0 0;
+      animation: fadeIn 2s ease;
     }
     #age-modal {
       position: fixed;
@@ -108,7 +127,8 @@
       padding: 40px;
       text-align: center;
       max-width: 400px;
-      animation: fadeIn 1s ease;
+      border-radius: 30px;
+      animation: bounceIn 1.5s ease;
     }
     .age-box h2 {
       margin-bottom: 20px;
@@ -122,10 +142,12 @@
       color: #fff;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
+      border-radius: 10px;
     }
     .age-box button:hover {
       background: #ff1a1a;
+      transform: scale(1.05);
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -139,26 +161,47 @@
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(1.2); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
   </style>
 </head>
 <body>
 
 <div id="age-modal">
   <div class="age-box">
-    <h2>Вам уже есть 18 лет? 🔞</h2>
-    <button onclick="enterSite()">Да, мне есть 18 ✅</button>
-    <button onclick="window.location.href='https://google.com'">Нет ❌</button>
+    <h2>Вам уже есть 18 лет?</h2>
+    <button onclick="enterSite()">Да, мне есть 18</button>
+    <button onclick="window.location.href='https://google.com'">Нет</button>
   </div>
 </div>
 
 <header>
-  <h1><a href="#" style="color: inherit; text-decoration: none;">Scarlet Night 🌃</a></h1>
+  <h1><a href="#" style="color: inherit; text-decoration: none;">Scarlet Night</a></h1>
   <nav>
-    <a href="#models">👠 Модели</a>
-    <a href="#vip">💎 VIP</a>
-    <a href="#search">🔍 Поиск</a>
-    <a href="#guide">📘 Инструкция</a>
-    <a href="#contact">📞 Связь</a>
+    <a href="#models">Модели</a>
+    <a href="#vip">VIP модели</a>
+    <a href="#search">Поиск</a>
+    <a href="#guide">Инструкция</a>
+    <a href="#contact">Связь</a>
   </nav>
 </header>
 
@@ -168,41 +211,39 @@
 
 <div class="content">
   <section class="section" id="models">
-    <h3>👠 Наши модели</h3>
-    <p>Scarlet Night представляет коллекцию очаровательных и умных девушек, готовых подарить вам восхитительный опыт. 🌹 Все наши модели тщательно отобраны, обладают не только внешней привлекательностью, но и высоким уровнем общения, культуры и этикета. Идеальные спутницы для вашего досуга, светских мероприятий и отдыха.</p>
+    <h3>Наши модели</h3>
+    <p>Scarlet Night представляет коллекцию очаровательных и умных девушек, готовых подарить вам восхитительный опыт. Все наши модели тщательно отобраны, обладают не только внешней привлекательностью, но и высоким уровнем общения, культуры и этикета. Идеальные спутницы для вашего досуга, светских мероприятий и отдыха.</p>
   </section>
 
   <section class="section" id="vip">
-    <h3>💎 VIP модели</h3>
-    <p>Для наших взыскательных клиентов мы предлагаем эксклюзивных девушек VIP-класса. 👑 Эти спутницы сочетают в себе утонченную красоту, безупречный стиль и умение поддержать изысканную беседу. Идеальный выбор для деловых встреч, частных вечеринок и отдыха класса люкс.</p>
+    <h3>VIP модели</h3>
+    <p>Для наших взыскательных клиентов мы предлагаем эксклюзивных девушек VIP-класса. Эти спутницы сочетают в себе утонченную красоту, безупречный стиль и умение поддержать изысканную беседу. Идеальный выбор для деловых встреч, частных вечеринок и отдыха класса люкс.</p>
   </section>
 
   <section class="section" id="search">
-    <h3>🔍 Поиск</h3>
-    <p>Удобный поиск поможет вам найти именно ту, которая соответствует вашим желаниям. 💋 Вы можете фильтровать девушек по внешности, росту, интересам, опыту и другим параметрам. Мы уважаем ваши предпочтения и поможем подобрать идеальную спутницу.</p>
+    <h3>Поиск</h3>
+    <p>Удобный поиск поможет вам найти именно ту, которая соответствует вашим желаниям. Вы можете фильтровать девушек по внешности, росту, интересам, опыту и другим параметрам. Мы уважаем ваши предпочтения и поможем подобрать идеальную спутницу.</p>
   </section>
 
   <section class="section" id="guide">
-    <h3>📘 Инструкция</h3>
+    <h3>Инструкция</h3>
     <p>Пользоваться нашим сервисом легко:
       <br>1. Выберите девушку, которая вам приглянулась.
       <br>2. Свяжитесь с нами через удобный мессенджер.
-      <br>3. Согласуйте детали и наслаждайтесь моментом. 💖
-      <br>Мы гарантируем полную конфиденциальность, безопасность и высокий уровень сервиса.
-    </p>
+      <br>3. Согласуйте детали и наслаждайтесь моментом.
+      <br>Мы гарантируем полную конфиденциальность, безопасность и высокий уровень сервиса.</p>
   </section>
 
   <section class="section" id="contact">
-    <h3>📞 Связь с нами</h3>
+    <h3>Связь с нами</h3>
     <p>Готовы ответить на любые ваши вопросы и помочь с выбором модели.
       <br>Email: <a href="mailto:contact@scarletnight.com" style="color: #ff1a1a">contact@scarletnight.com</a>
-      <br>Telegram: <a href="https://t.me/scarletnight_support" style="color: #ff1a1a">@scarletnight_support</a>
-    </p>
+      <br>Telegram: <a href="https://t.me/scarletnight_support" style="color: #ff1a1a">@scarletnight_support</a></p>
   </section>
 </div>
 
 <footer>
-  &copy; 2025 Scarlet Night. Все права защищены. ❤️
+  &copy; 2025 Scarlet Night. Все права защищены.
 </footer>
 
 <script>
